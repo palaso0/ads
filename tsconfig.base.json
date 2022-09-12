@@ -1,0 +1,24 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom", "es2018.promise"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ads/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@ads/graphql-models": ["libs/graphql-models/src/index.ts"],
+      "@ads/prisma-db-connection": ["libs/prisma-db-connection/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
