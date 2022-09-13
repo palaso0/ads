@@ -1,2 +1,6 @@
-export * from "./User"
+export * from "./Ad"
 export * from "./Auth"
+export * from "./Category"
+export * from "./Client"
+export * from "./Publisher"
+export * from "./User"

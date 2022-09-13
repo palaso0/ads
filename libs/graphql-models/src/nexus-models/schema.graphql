@@ -2,29 +2,64 @@
 ### Do not make changes to this file directly
 
 
+type Ad {
+  adId: Int!
+  category: Category
+  categoryId: Int!
+  detail: String!
+  keywords: [String!]!
+  photos: [String!]!
+  title: String!
+}
+
 type AuthPayload {
   token: String!
   user: User!
 }
 
+type Category {
+  categoryId: Int!
+  title: String!
+}
+
+type Client {
+  clientId: Int!
+  user: User
+  userId: Int!
+}
+
 type Mutation {
+  addCategory(title: String!): Category!
+  addUser(email: String!, lastName: String!, name: String!, password: String!, userName: String!): User!
   login(email: String!, password: String!): AuthPayload!
-  post(email: String!, lastName: String!, name: String!, password: String!, type: String!, userName: String!): User!
-  remove(id: Int!): User!
-  signup(email: String!, lastName: String!, name: String!, password: String!, type: String!, userName: String!): AuthPayload!
+  removeCategory(categoryId: Int!): Category!
+  removeUser(userId: Int!): User!
+  signup(email: String!, lastName: String!, name: String!, password: String!, userName: String!): AuthPayload!
+}
+
+type Publisher {
+  publisherId: Int!
+  user: User
+  userId: Int!
 }
 
 type Query {
-  user(id: Int!): [User!]!
+  ads: [Ad!]!
+  categories: [Category!]!
+  category(categoryId: Int!): [Category!]!
+  client(userId: Int!): [Client!]!
+  clients: [Client!]!
+  publisher(userId: Int!): [Publisher!]!
+  publishers: [Publisher!]!
+  user(userId: Int!): [User!]!
   users: [User!]!
 }
 
 type User {
   email: String!
-  id: Int!
   lastName: String!
   name: String!
   password: String!
-  type: String!
+  userId: Int!
   userName: String!
 }

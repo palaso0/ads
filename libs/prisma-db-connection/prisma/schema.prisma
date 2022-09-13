@@ -11,12 +11,51 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  userId    Int        @id @default(autoincrement())
   userName  String
   password  String
-  email     String @unique
+  email     String     @unique
   name      String
   lastName  String
-  type      String
-  createdAt DateTime? @default(now())
+  createdAt DateTime?  @default(now())
+  Client    Client?
+  Admin     Admin?
+  Publisher Publisher?
+}
+
+model Client {
+  clientId Int  @id @default(autoincrement())
+  userId   Int  @unique
+  user     User @relation(fields: [userId], references: [userId])
+}
+
+model Admin {
+  adminId Int  @id @default(autoincrement())
+  userId  Int  @unique
+  user    User @relation(fields: [userId], references: [userId])
+}
+
+model Publisher {
+  publisherId Int    @id @default(autoincrement())
+  userId      Int    @unique
+  user        User   @relation(fields: [userId], references: [userId])
+  cellphone   String
+  photo       String
+}
+
+model Category {
+  categoryId Int    @id @default(autoincrement())
+  title      String 
+  Ad         Ad[]
+}
+
+model Ad {
+  adId         Int       @id @default(autoincrement())
+  title        String
+  detail       String
+  photos       String[]
+  keywords     String[]
+  creationDate DateTime? @default(now())
+  categoryId   Int
+  category     Category  @relation(fields: [categoryId], references: [categoryId])
 }

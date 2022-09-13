@@ -28,19 +28,38 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Ad: { // root type
+    adId: number; // Int!
+    categoryId: number; // Int!
+    detail: string; // String!
+    keywords: string[]; // [String!]!
+    photos: string[]; // [String!]!
+    title: string; // String!
+  }
   AuthPayload: { // root type
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  Category: { // root type
+    categoryId: number; // Int!
+    title: string; // String!
+  }
+  Client: { // root type
+    clientId: number; // Int!
+    userId: number; // Int!
+  }
   Mutation: {};
+  Publisher: { // root type
+    publisherId: number; // Int!
+    userId: number; // Int!
+  }
   Query: {};
   User: { // root type
     email: string; // String!
-    id: number; // Int!
     lastName: string; // String!
     name: string; // String!
     password: string; // String!
-    type: string; // String!
+    userId: number; // Int!
     userName: string; // String!
   }
 }
@@ -56,86 +75,161 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Ad: { // field return type
+    adId: number; // Int!
+    category: NexusGenRootTypes['Category'] | null; // Category
+    categoryId: number; // Int!
+    detail: string; // String!
+    keywords: string[]; // [String!]!
+    photos: string[]; // [String!]!
+    title: string; // String!
+  }
   AuthPayload: { // field return type
     token: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
+  Category: { // field return type
+    categoryId: number; // Int!
+    title: string; // String!
+  }
+  Client: { // field return type
+    clientId: number; // Int!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: number; // Int!
+  }
   Mutation: { // field return type
+    addCategory: NexusGenRootTypes['Category']; // Category!
+    addUser: NexusGenRootTypes['User']; // User!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
-    post: NexusGenRootTypes['User']; // User!
-    remove: NexusGenRootTypes['User']; // User!
+    removeCategory: NexusGenRootTypes['Category']; // Category!
+    removeUser: NexusGenRootTypes['User']; // User!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
+  Publisher: { // field return type
+    publisherId: number; // Int!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: number; // Int!
+  }
   Query: { // field return type
+    ads: NexusGenRootTypes['Ad'][]; // [Ad!]!
+    categories: NexusGenRootTypes['Category'][]; // [Category!]!
+    category: NexusGenRootTypes['Category'][]; // [Category!]!
+    client: NexusGenRootTypes['Client'][]; // [Client!]!
+    clients: NexusGenRootTypes['Client'][]; // [Client!]!
+    publisher: NexusGenRootTypes['Publisher'][]; // [Publisher!]!
+    publishers: NexusGenRootTypes['Publisher'][]; // [Publisher!]!
     user: NexusGenRootTypes['User'][]; // [User!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
     email: string; // String!
-    id: number; // Int!
     lastName: string; // String!
     name: string; // String!
     password: string; // String!
-    type: string; // String!
+    userId: number; // Int!
     userName: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Ad: { // field return type name
+    adId: 'Int'
+    category: 'Category'
+    categoryId: 'Int'
+    detail: 'String'
+    keywords: 'String'
+    photos: 'String'
+    title: 'String'
+  }
   AuthPayload: { // field return type name
     token: 'String'
     user: 'User'
   }
+  Category: { // field return type name
+    categoryId: 'Int'
+    title: 'String'
+  }
+  Client: { // field return type name
+    clientId: 'Int'
+    user: 'User'
+    userId: 'Int'
+  }
   Mutation: { // field return type name
+    addCategory: 'Category'
+    addUser: 'User'
     login: 'AuthPayload'
-    post: 'User'
-    remove: 'User'
+    removeCategory: 'Category'
+    removeUser: 'User'
     signup: 'AuthPayload'
   }
+  Publisher: { // field return type name
+    publisherId: 'Int'
+    user: 'User'
+    userId: 'Int'
+  }
   Query: { // field return type name
+    ads: 'Ad'
+    categories: 'Category'
+    category: 'Category'
+    client: 'Client'
+    clients: 'Client'
+    publisher: 'Publisher'
+    publishers: 'Publisher'
     user: 'User'
     users: 'User'
   }
   User: { // field return type name
     email: 'String'
-    id: 'Int'
     lastName: 'String'
     name: 'String'
     password: 'String'
-    type: 'String'
+    userId: 'Int'
     userName: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
-    login: { // args
-      email: string; // String!
-      password: string; // String!
+    addCategory: { // args
+      title: string; // String!
     }
-    post: { // args
+    addUser: { // args
       email: string; // String!
       lastName: string; // String!
       name: string; // String!
       password: string; // String!
-      type: string; // String!
       userName: string; // String!
     }
-    remove: { // args
-      id: number; // Int!
+    login: { // args
+      email: string; // String!
+      password: string; // String!
+    }
+    removeCategory: { // args
+      categoryId: number; // Int!
+    }
+    removeUser: { // args
+      userId: number; // Int!
     }
     signup: { // args
       email: string; // String!
       lastName: string; // String!
       name: string; // String!
       password: string; // String!
-      type: string; // String!
       userName: string; // String!
     }
   }
   Query: {
+    category: { // args
+      categoryId: number; // Int!
+    }
+    client: { // args
+      userId: number; // Int!
+    }
+    publisher: { // args
+      userId: number; // Int!
+    }
     user: { // args
-      id: number; // Int!
+      userId: number; // Int!
     }
   }
 }

@@ -7,13 +7,12 @@ import { NexusGenObjects } from "../nexus-models/nexus-typegen";
 export const User = objectType({
     name: "User",
     definition(t) {
-        t.nonNull.int("id");
+        t.nonNull.int("userId");
         t.nonNull.string("userName");
         t.nonNull.string("password")
         t.nonNull.string("email")
         t.nonNull.string("name")
         t.nonNull.string("lastName")
-        t.nonNull.string("type")
     }
 })
 
@@ -27,15 +26,15 @@ export const UserQuery = extendType({
                 return context.prisma.user.findMany();
             }
         });
-        t.nonNull.list.nonNull.field("user", { 
+        t.nonNull.list.nonNull.field("user", {
             type: "User",
             args: {
-                id: nonNull(intArg()),
+                userId: nonNull(intArg()),
             },
-            resolve(parent,args,context,info){
+            resolve(parent, args, context, info) {
                 return context.prisma.user.findMany({
                     where: {
-                        id: args.id,
+                        userId: args.userId,
                     }
                 });
             }
@@ -47,7 +46,7 @@ export const UserMutation = extendType({
     type: "Mutation",
     definition(t) {
         t.nonNull.field(
-            "post", {
+            "addUser", {
             type: "User",
             args: {
                 userName: nonNull(stringArg()),
@@ -55,34 +54,32 @@ export const UserMutation = extendType({
                 email: nonNull(stringArg()),
                 name: nonNull(stringArg()),
                 lastName: nonNull(stringArg()),
-                type: nonNull(stringArg())
             },
 
             resolve(parent, args, context) {
-                const { userName, password, email, name, lastName, type } = args
+                const { userName, password, email, name, lastName } = args
                 const newUser = context.prisma.user.create({
                     data: {
                         userName,
                         password,
                         email,
                         name,
-                        lastName,
-                        type
+                        lastName
                     }
                 });
 
                 return newUser
             }
         });
-        t.nonNull.field("remove", {
+        t.nonNull.field("removeUser", {
             type: "User",
             args: {
-                id: nonNull(intArg()),
+                userId: nonNull(intArg()),
             },
             resolve(parten, args, context) {
                 return context.prisma.user.delete({
                     where: {
-                        id: args.id,
+                        userId: args.userId,
                     },
                 });
             }

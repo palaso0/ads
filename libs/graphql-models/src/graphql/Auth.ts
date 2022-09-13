@@ -36,12 +36,12 @@ export const AuthMutation = extendType({
                     args.password,
                     user.password,
                 );
-                
+
                 if (!valid) {
                     throw new Error("Invalid password");
                 }
 
-                const token = jwt.sign({ userId: user.id }, APP_SECRET);
+                const token = jwt.sign({ userId: user.userId }, APP_SECRET);
 
                 return {
                     token,
@@ -57,19 +57,18 @@ export const AuthMutation = extendType({
                 password: nonNull(stringArg()),
                 email: nonNull(stringArg()),
                 name: nonNull(stringArg()),
-                lastName: nonNull(stringArg()),
-                type: nonNull(stringArg())
+                lastName: nonNull(stringArg())
             },
-            async resolve(parent, args:any, context) {
-                const { userName, email, name, lastName, type } = args;
+            async resolve(parent, args: any, context) {
+                const { userName, email, name, lastName } = args;
 
                 const password = await bcrypt.hash(args.password, 10);
 
                 const user = await context.prisma.user.create({
-                    data: { userName, email, name, lastName, type, password },
+                    data: { userName, email, name, lastName, password },
                 });
 
-                const token = jwt.sign({ userId: user.id }, APP_SECRET);
+                const token = jwt.sign({ userId: user.userId }, APP_SECRET);
 
                 return {
                     token,
