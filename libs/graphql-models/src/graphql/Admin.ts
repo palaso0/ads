@@ -1,37 +1,37 @@
 import { extendType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 
 
-export const Client = objectType({
-    name: "Client",
+export const Admin = objectType({
+    name: "Admin",
     definition(t) {
-        t.nonNull.int("clientId");
+        t.nonNull.int("adminId");
         t.nonNull.int("userId");
         t.field('user', {
             type: "User",
-            resolve(parent, args, context) {
-                return context.prisma.user
+            resolve(parent, args, context) {  
+                return context.prisma.user  
                     .findUnique({ where: { userId: parent.userId } })
             },
         })
     }
 })
 
-export const ClientQuery = extendType({
+export const AdminQuery = extendType({
     type: "Query",
     definition(t) {
-        t.nonNull.list.nonNull.field("clients", {
-            type: "Client",
+        t.nonNull.list.nonNull.field("admins", {
+            type: "Admin",
             resolve(parent, args, context, info) {
-                return context.prisma.client.findMany();
+                return context.prisma.admin.findMany();
             }
         });
-        t.nonNull.list.nonNull.field("client", {
-            type: "Client",
+        t.nonNull.list.nonNull.field("admin", {
+            type: "Admin",
             args: {
                 userId: nonNull(intArg()),
             },
             resolve(parent, args, context, info) {
-                return context.prisma.client.findMany({
+                return context.prisma.admin.findMany({
                     where: {
                         userId: args.userId,
                     }
@@ -41,36 +41,36 @@ export const ClientQuery = extendType({
     }
 })
 
-export const ClientMutation = extendType({
+export const AdminMutation = extendType({
     type: "Mutation",
     definition(t) {
         t.nonNull.field(
-            "addClient", {
-            type: "Client",
+            "addAdmin", {
+            type: "Admin",
             args: {
                 userId: nonNull(intArg())
             },
 
             resolve(parent, args, context) {
                 const { userId } = args
-                const newClient = context.prisma.client.create({
+                const newAdmin = context.prisma.admin.create({
                     data: {
                         userId
                     }
                 });
 
-                return newClient
+                return newAdmin
             }
         });
-        t.nonNull.field("removeClient", {
-            type: "Client",
+        t.nonNull.field("removeAdmin", {
+            type: "Admin",
             args: {
-                clientId: nonNull(intArg()),
+                adminId: nonNull(intArg()),
             },
             resolve(parten, args, context) {
-                return context.prisma.client.delete({
+                return context.prisma.admin.delete({
                     where: {
-                        clientId: args.clientId,
+                        adminId: args.adminId,
                     },
                 });
             }

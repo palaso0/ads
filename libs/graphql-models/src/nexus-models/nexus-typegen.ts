@@ -30,11 +30,16 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   Ad: { // root type
     adId: number; // Int!
+    adminId: number; // Int!
     categoryId: number; // Int!
     detail: string; // String!
     keywords: string[]; // [String!]!
     photos: string[]; // [String!]!
     title: string; // String!
+  }
+  Admin: { // root type
+    adminId: number; // Int!
+    userId: number; // Int!
   }
   AuthPayload: { // root type
     token: string; // String!
@@ -50,6 +55,8 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Publisher: { // root type
+    cellphone: string; // String!
+    photo: string; // String!
     publisherId: number; // Int!
     userId: number; // Int!
   }
@@ -77,12 +84,19 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   Ad: { // field return type
     adId: number; // Int!
+    adminCreator: NexusGenRootTypes['Admin'] | null; // Admin
+    adminId: number; // Int!
     category: NexusGenRootTypes['Category'] | null; // Category
     categoryId: number; // Int!
     detail: string; // String!
     keywords: string[]; // [String!]!
     photos: string[]; // [String!]!
     title: string; // String!
+  }
+  Admin: { // field return type
+    adminId: number; // Int!
+    user: NexusGenRootTypes['User'] | null; // User
+    userId: number; // Int!
   }
   AuthPayload: { // field return type
     token: string; // String!
@@ -98,19 +112,32 @@ export interface NexusGenFieldTypes {
     userId: number; // Int!
   }
   Mutation: { // field return type
+    addAd: NexusGenRootTypes['Ad']; // Ad!
+    addAdmin: NexusGenRootTypes['Admin']; // Admin!
     addCategory: NexusGenRootTypes['Category']; // Category!
+    addClient: NexusGenRootTypes['Client']; // Client!
+    addPublisher: NexusGenRootTypes['Publisher']; // Publisher!
     addUser: NexusGenRootTypes['User']; // User!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+    removeAdd: NexusGenRootTypes['Ad']; // Ad!
+    removeAdmin: NexusGenRootTypes['Admin']; // Admin!
     removeCategory: NexusGenRootTypes['Category']; // Category!
+    removeClient: NexusGenRootTypes['Client']; // Client!
+    removePublisher: NexusGenRootTypes['Publisher']; // Publisher!
     removeUser: NexusGenRootTypes['User']; // User!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Publisher: { // field return type
+    cellphone: string; // String!
+    photo: string; // String!
     publisherId: number; // Int!
     user: NexusGenRootTypes['User'] | null; // User
     userId: number; // Int!
   }
   Query: { // field return type
+    ad: NexusGenRootTypes['Ad'][]; // [Ad!]!
+    admin: NexusGenRootTypes['Admin'][]; // [Admin!]!
+    admins: NexusGenRootTypes['Admin'][]; // [Admin!]!
     ads: NexusGenRootTypes['Ad'][]; // [Ad!]!
     categories: NexusGenRootTypes['Category'][]; // [Category!]!
     category: NexusGenRootTypes['Category'][]; // [Category!]!
@@ -134,12 +161,19 @@ export interface NexusGenFieldTypes {
 export interface NexusGenFieldTypeNames {
   Ad: { // field return type name
     adId: 'Int'
+    adminCreator: 'Admin'
+    adminId: 'Int'
     category: 'Category'
     categoryId: 'Int'
     detail: 'String'
     keywords: 'String'
     photos: 'String'
     title: 'String'
+  }
+  Admin: { // field return type name
+    adminId: 'Int'
+    user: 'User'
+    userId: 'Int'
   }
   AuthPayload: { // field return type name
     token: 'String'
@@ -155,19 +189,32 @@ export interface NexusGenFieldTypeNames {
     userId: 'Int'
   }
   Mutation: { // field return type name
+    addAd: 'Ad'
+    addAdmin: 'Admin'
     addCategory: 'Category'
+    addClient: 'Client'
+    addPublisher: 'Publisher'
     addUser: 'User'
     login: 'AuthPayload'
+    removeAdd: 'Ad'
+    removeAdmin: 'Admin'
     removeCategory: 'Category'
+    removeClient: 'Client'
+    removePublisher: 'Publisher'
     removeUser: 'User'
     signup: 'AuthPayload'
   }
   Publisher: { // field return type name
+    cellphone: 'String'
+    photo: 'String'
     publisherId: 'Int'
     user: 'User'
     userId: 'Int'
   }
   Query: { // field return type name
+    ad: 'Ad'
+    admin: 'Admin'
+    admins: 'Admin'
     ads: 'Ad'
     categories: 'Category'
     category: 'Category'
@@ -190,8 +237,27 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    addAd: { // args
+      adminId: number; // Int!
+      categoryId?: number | null; // Int
+      detail: string; // String!
+      keywords: string[]; // [String!]!
+      photos: string[]; // [String!]!
+      title: string; // String!
+    }
+    addAdmin: { // args
+      userId: number; // Int!
+    }
     addCategory: { // args
       title: string; // String!
+    }
+    addClient: { // args
+      userId: number; // Int!
+    }
+    addPublisher: { // args
+      cellphone: string; // String!
+      photo: string; // String!
+      userId: number; // Int!
     }
     addUser: { // args
       email: string; // String!
@@ -204,8 +270,20 @@ export interface NexusGenArgTypes {
       email: string; // String!
       password: string; // String!
     }
+    removeAdd: { // args
+      adId: number; // Int!
+    }
+    removeAdmin: { // args
+      adminId: number; // Int!
+    }
     removeCategory: { // args
       categoryId: number; // Int!
+    }
+    removeClient: { // args
+      clientId: number; // Int!
+    }
+    removePublisher: { // args
+      publisherId: number; // Int!
     }
     removeUser: { // args
       userId: number; // Int!
@@ -219,6 +297,12 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    ad: { // args
+      adId: number; // Int!
+    }
+    admin: { // args
+      userId: number; // Int!
+    }
     category: { // args
       categoryId: number; // Int!
     }

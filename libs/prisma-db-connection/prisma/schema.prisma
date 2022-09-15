@@ -30,9 +30,10 @@ model Client {
 }
 
 model Admin {
-  adminId Int  @id @default(autoincrement())
-  userId  Int  @unique
-  user    User @relation(fields: [userId], references: [userId])
+  adminId    Int  @id @default(autoincrement())
+  userId     Int  @unique
+  user       User @relation(fields: [userId], references: [userId])
+  createdAds Ad[]
 }
 
 model Publisher {
@@ -45,17 +46,19 @@ model Publisher {
 
 model Category {
   categoryId Int    @id @default(autoincrement())
-  title      String 
+  title      String
   Ad         Ad[]
 }
 
 model Ad {
-  adId         Int       @id @default(autoincrement())
-  title        String
-  detail       String
-  photos       String[]
-  keywords     String[]
-  creationDate DateTime? @default(now())
-  categoryId   Int
-  category     Category  @relation(fields: [categoryId], references: [categoryId])
+  adId          Int       @id @default(autoincrement())
+  title         String
+  detail        String
+  photos        String[]
+  keywords      String[]
+  creationDate  DateTime? @default(now())
+  categoryId    Int
+  category      Category  @relation(fields: [categoryId], references: [categoryId])
+  adminId       Int
+  admintCreator Admin     @relation(fields: [adminId], references: [adminId])
 }

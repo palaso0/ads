@@ -4,12 +4,20 @@
 
 type Ad {
   adId: Int!
+  adminCreator: Admin
+  adminId: Int!
   category: Category
   categoryId: Int!
   detail: String!
   keywords: [String!]!
   photos: [String!]!
   title: String!
+}
+
+type Admin {
+  adminId: Int!
+  user: User
+  userId: Int!
 }
 
 type AuthPayload {
@@ -29,21 +37,34 @@ type Client {
 }
 
 type Mutation {
+  addAd(adminId: Int!, categoryId: Int, detail: String!, keywords: [String!]!, photos: [String!]!, title: String!): Ad!
+  addAdmin(userId: Int!): Admin!
   addCategory(title: String!): Category!
+  addClient(userId: Int!): Client!
+  addPublisher(cellphone: String!, photo: String!, userId: Int!): Publisher!
   addUser(email: String!, lastName: String!, name: String!, password: String!, userName: String!): User!
   login(email: String!, password: String!): AuthPayload!
+  removeAdd(adId: Int!): Ad!
+  removeAdmin(adminId: Int!): Admin!
   removeCategory(categoryId: Int!): Category!
+  removeClient(clientId: Int!): Client!
+  removePublisher(publisherId: Int!): Publisher!
   removeUser(userId: Int!): User!
   signup(email: String!, lastName: String!, name: String!, password: String!, userName: String!): AuthPayload!
 }
 
 type Publisher {
+  cellphone: String!
+  photo: String!
   publisherId: Int!
   user: User
   userId: Int!
 }
 
 type Query {
+  ad(adId: Int!): [Ad!]!
+  admin(userId: Int!): [Admin!]!
+  admins: [Admin!]!
   ads: [Ad!]!
   categories: [Category!]!
   category(categoryId: Int!): [Category!]!

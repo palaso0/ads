@@ -1,4 +1,5 @@
 export * from "./Ad"
+export * from "./Admin"
 export * from "./Auth"
 export * from "./Category"
 export * from "./Client"
