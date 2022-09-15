@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Message } from '@ads/api-interfaces';
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
-
-  useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
-  }, []);
 
   return (
     <>
@@ -20,7 +12,6 @@ export const App = () => {
           alt="Nx - Smart, Fast and Extensible Build System"
         />
       </div>
-      <div>{m.message}</div>
     </>
   );
 };

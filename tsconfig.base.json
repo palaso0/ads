@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ads/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@ads/graphql-models": ["libs/graphql-models/src/index.ts"],
-      "@ads/prisma-db-connection": ["libs/prisma-db-connection/src/index.ts"]
+      "@ads/prisma-db-connection": ["libs/prisma-db-connection/src/index.ts"],
+      "@ads/web-app-lib": ["libs/web-app-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

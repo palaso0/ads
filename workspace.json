@@ -3,10 +3,10 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
-    "api-interfaces": "libs/api-interfaces",
     "graphql-models": "libs/graphql-models",
     "prisma-db-connection": "libs/prisma-db-connection",
     "web-app": "apps/web-app",
-    "web-app-e2e": "apps/web-app-e2e"
+    "web-app-e2e": "apps/web-app-e2e",
+    "web-app-lib": "libs/web-app-lib"
   }
 }
