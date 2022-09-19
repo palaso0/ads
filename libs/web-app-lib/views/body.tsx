@@ -2,6 +2,8 @@ import AdCard from "../ui/card/adCard";
 import AdModal from "../ui/adModal/AdModal";
 import { Box } from "@mui/system";
 export default function Body(){
+    
+
     return(
         <Box sx= { 
             {
@@ -15,7 +17,7 @@ export default function Body(){
         }>
             <AdCard/>
 
-            <AdModal/>
+            
         </Box>
         
     )
