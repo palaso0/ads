@@ -1,5 +1,6 @@
+import { prisma } from "libs/prisma-db-connection/src/context";
 import { extendType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
-import { ArgsRecord } from "nexus/dist/core";
+import { arg, ArgsRecord } from "nexus/dist/core";
 import { resolve } from "path";
 import { NexusGenObjects } from "../nexus-models/nexus-typegen";
 
@@ -76,7 +77,7 @@ export const UserMutation = extendType({
             args: {
                 userId: nonNull(intArg()),
             },
-            resolve(parten, args, context) {
+            resolve(parent, args, context) {
                 return context.prisma.user.delete({
                     where: {
                         userId: args.userId,
@@ -84,5 +85,29 @@ export const UserMutation = extendType({
                 });
             }
         });
+    
+        t.nonNull.field("updateUser",{
+            type: "User",
+            args:{
+                userId: nonNull(intArg()),
+                name: stringArg(),
+                lastName: stringArg(),
+                email: stringArg(),
+                userName: stringArg(),
+            },
+            resolve(parent, args,context){
+                return context.prisma.user.update({
+                    where: { 
+                        userId: args.userId,
+                    },
+                    data:{
+                        name: (args.name == null || args.name == "")  ? undefined : args.name, 
+                        email: (args.email == null || args.email == "")  ? undefined : args.email,
+                        lastName: (args.lastName == null || args.lastName == "")  ? undefined : args.lastName,
+                        userName: (args.userName == null || args.userName == "")  ? undefined : args.userName,
+                    }
+                })
+            }
+        })
     },
 })

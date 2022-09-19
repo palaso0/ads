@@ -1,104 +1,59 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Copyright from '../ui/copyright/copyRight';
-import { Link as RouteLink } from "react-router-dom";
-import { fetchSignIn } from '../services/log';
+import SignInForm from '../ui/login/signInForm';
+import { fetchSignIn, fetchGetUserType } from '../services/log';
+import { setUserState, setPublisherState, setUserToken, selectUserData, setClientId, setPublisherId, setAdminId } from '../data-access/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+
 export default function SignIn() {
-
-
+  const userData = useSelector(selectUserData)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email')
     const password = data.get('password')
+
     fetchSignIn(email, password)
-      .then(data => {console.log(data)
-      if(!data.data)
-      {
-        console.log("Errorsito");
-      }
-      else{
-        console.log("login",data.data.login.token);
-        console.log("user",data.data.login.user);
-      }
-
+      .then(data => {
+        if (data.data) {
+          dispatch(setUserToken(data.data.login.token))
+          dispatch(setUserState(data.data.login.user))
+          fetchGetUserType(data.data.login.user.userId)
+            .then(data => {
+              if (data.data.client.length > 0) {
+                dispatch(setClientId(data.data.client[0].clientId))
+              }
+              if (data.data.publisher.length > 0) {
+                console.log("Modificando publisher");
+                dispatch(setPublisherState(data.data.publisher[0]))
+              }
+              if (data.data.admin.length > 0) {
+                dispatch(setAdminId(data.data.admin[0].adminId))
+              }
+            })
+            navigate("/home")
+        }
       })
-
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
+    <>
+      <SignInForm handleSubmit={handleSubmit} />
+      <p> {userData.userId}</p>
+      <p>{userData.token}</p>
+      <p>{userData.name}</p>
+      <p>{userData.lastName}</p>
+      <p>clientId: {userData.clientId}</p>
+      <p>publisherId: {userData.publisherId}</p>
+      <p>adminId: {userData.adminId}</p>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <RouteLink to="/signUp">
-                "Don't have an account? Sign Up"
-              </RouteLink>
-            </Grid>
-          </Grid>
-        </Box>
-      </Box>
-      <Copyright />
-    </Container>
+      <p>userName: {userData.userName}</p>
+      <p>email: {userData.email}</p>
+      <p>photo: {userData.photo}</p>
+      <p>cellphone: {userData.cellphone}</p>
+    </>
   );
 }

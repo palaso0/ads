@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../ui/navbar/navbar';
+import { useNavigate } from "react-router-dom";
+import { selectUserData } from '../data-access/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import Body from '../ui/body/body';
 
 export const ClientPage = () => {
+  const userData = useSelector(selectUserData)
+  const navigate = useNavigate();
 
   return (
     <>
-        <NavBar/>
+      <NavBar />
+      <Body />
     </>
   );
 };

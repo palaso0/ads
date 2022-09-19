@@ -126,6 +126,8 @@ export interface NexusGenFieldTypes {
     removePublisher: NexusGenRootTypes['Publisher']; // Publisher!
     removeUser: NexusGenRootTypes['User']; // User!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+    updatePublisher: NexusGenRootTypes['Publisher']; // Publisher!
+    updateUser: NexusGenRootTypes['User']; // User!
   }
   Publisher: { // field return type
     cellphone: string; // String!
@@ -203,6 +205,8 @@ export interface NexusGenFieldTypeNames {
     removePublisher: 'Publisher'
     removeUser: 'User'
     signup: 'AuthPayload'
+    updatePublisher: 'Publisher'
+    updateUser: 'User'
   }
   Publisher: { // field return type name
     cellphone: 'String'
@@ -294,6 +298,18 @@ export interface NexusGenArgTypes {
       name: string; // String!
       password: string; // String!
       userName: string; // String!
+    }
+    updatePublisher: { // args
+      cellphone?: string | null; // String
+      photo?: string | null; // String
+      publisherId: number; // Int!
+    }
+    updateUser: { // args
+      email?: string | null; // String
+      lastName?: string | null; // String
+      name?: string | null; // String
+      userId: number; // Int!
+      userName?: string | null; // String
     }
   }
   Query: {

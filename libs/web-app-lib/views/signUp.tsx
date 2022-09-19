@@ -1,119 +1,93 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Copyright from '../ui/copyright/copyRight';
-import { fetchSignUp } from '../services/log';
 
-import { Outlet, Link as RouteLink } from "react-router-dom";
+import { fetchSignUp, fetchCreateAdmin, fetchCreatePublisher, fetchCreateClient } from '../services/log';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserState, setUserToken, setClientId, setAdminId, setPublisherId, selectUserData } from '../data-access/slices/userSlice';
+import SignUpForm from '../ui/login/signUpForm';
 
 export default function SignUp() {
+    const [userType, setUserType] = React.useState('CLIENT');
+    const dispatch = useDispatch();
+    const userData = useSelector(selectUserData)
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        const email = data.get('email');
-        const password = data.get('password');
-        const name = data.get('firstName');
-        const lastName = data.get('lastName');
-        const userName = data.get('userName');
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get('email');
+        const password = formData.get('password');
+        const name = formData.get('firstName');
+        const lastName = formData.get('lastName');
+        const userName = formData.get('userName');
+
         fetchSignUp(name, lastName, userName, email, password)
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.data) {
+                    dispatch(setUserToken(data.data.signup.token))
+                    dispatch(setUserState(data.data.signup.user))
+                    switch (userType) {
+                        case "CLIENT": {
+                            console.log("Creanto Cliente");
+                            fetchCreateClient(data.data.signup.user.userId)
+                                .then(data => {
+                                    if (data.data) {
+                                        console.log("USerId", userData.userId);
+                                        console.log("Respuesta", data);
+                                        dispatch(setClientId(data.data.addClient.clientId))
+                                    }
+                                })
+                            break;
+                        }
+                        case "PUBLISHER": {
+                            //TODO
+                            const photo = formData.get('photo');
+                            const cellphone = formData.get('cellphone');
+                            fetchCreatePublisher(userData.userId, photo, cellphone)
+                                .then(data => {
+                                    if (data.data) {
+                                        dispatch(setPublisherId(data.data.addPublisher))
+                                    }
+                                })
+                            break;
+                        }
+                        case "ADMIN": {
+                            fetchCreateAdmin(data.data.signup.user.userId)
+                                .then(data => {
+                                    if (data.data) {
+                                        dispatch(setAdminId(data.data.addAdmin.adminId))
+                                    }
+                                })
+                            break;
+                        }
+                    }
+                }
+
+            })
+
     };
 
+
+
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-                sx={{
-                    marginTop: 8,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                }}
-            >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
-                </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="given-name"
-                                name="firstName"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
-                            />
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="userName"
-                                label="User Name"
-                                name="userName"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="new-password"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        Sign Up
-                    </Button>
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <RouteLink to="/signIn">
-                                Already have an account? Sign in
-                            </RouteLink>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Box>
-            <Copyright />
-        </Container>
+        <>
+            <SignUpForm
+                handleSubmit={handleSubmit}
+                userType={userType}
+                setUserType={setUserType}
+            />
+
+            <p> {userData.userId}</p>
+            <p>{userData.token}</p>
+            <p>{userData.name}</p>
+            <p>{userData.lastName}</p>
+            <p>clientId: {userData.clientId}</p>
+            <p>publisherId: {userData.publisherId}</p>
+            <p>adminId: {userData.adminId}</p>
+
+            <p>userName: {userData.userName}</p>
+            <p>email: {userData.email}</p>
+            <p>photo: {userData.photo}</p>
+            <p>cellphone: {userData.cellphone}</p>
+        </>
     );
 }

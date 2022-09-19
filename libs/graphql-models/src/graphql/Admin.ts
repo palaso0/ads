@@ -75,5 +75,6 @@ export const AdminMutation = extendType({
                 });
             }
         });
+
     },
 })

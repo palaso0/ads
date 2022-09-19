@@ -10,8 +10,8 @@ export const Publisher = objectType({
         t.nonNull.int("userId");
         t.field('user', {
             type: "User",
-            resolve(parent, args, context) {  
-                return context.prisma.user  
+            resolve(parent, args, context) {
+                return context.prisma.user
                     .findUnique({ where: { userId: parent.userId } })
             },
         })
@@ -56,7 +56,7 @@ export const PublisherMutation = extendType({
             },
 
             resolve(parent, args, context) {
-                const { 
+                const {
                     userId,
                     cellphone,
                     photo
@@ -85,5 +85,24 @@ export const PublisherMutation = extendType({
                 });
             }
         });
+        t.nonNull.field("updatePublisher", {
+            type: "Publisher",
+            args: {
+                publisherId: nonNull(intArg()),
+                cellphone: stringArg(),
+                photo: stringArg(),
+            },
+            resolve(parent, args, context) {
+                return context.prisma.publisher.update({
+                    where: {
+                        publisherId: args.publisherId,
+                    },
+                    data: {
+                        cellphone: (args.cellphone == null || args.cellphone == "") ? undefined : args.cellphone,
+                        photo: (args.photo == null || args.photo == "") ? undefined : args.photo,
+                    }
+                })
+            }
+        })
     },
 })

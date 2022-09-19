@@ -51,6 +51,8 @@ type Mutation {
   removePublisher(publisherId: Int!): Publisher!
   removeUser(userId: Int!): User!
   signup(email: String!, lastName: String!, name: String!, password: String!, userName: String!): AuthPayload!
+  updatePublisher(cellphone: String, photo: String, publisherId: Int!): Publisher!
+  updateUser(email: String, lastName: String, name: String, userId: Int!, userName: String): User!
 }
 
 type Publisher {

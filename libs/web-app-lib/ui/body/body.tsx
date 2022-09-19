@@ -1,11 +1,12 @@
-import AdCard from "../ui/card/adCard";
-import AdModal from "../ui/adModal/AdModal";
+import AdCard from "../card/adCard";
+import AdModal from "../adModal/AdModal";
 import { Box } from "@mui/system";
-export default function Body(){
-    
+import AdFormModal from "../adForm/adForm";
+export default function Body() {
 
-    return(
-        <Box sx= { 
+
+    return (
+        <Box sx={
             {
                 display: 'flex',
                 gap: 5,
@@ -15,10 +16,8 @@ export default function Body(){
                 justifyContet: 'center'
             }
         }>
-            <AdCard/>
-
-            
+            <AdCard />
         </Box>
-        
+
     )
 }
