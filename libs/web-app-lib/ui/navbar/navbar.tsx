@@ -6,8 +6,11 @@ import Home from './components/home';
 import Favorite from './components/favorite';
 import Search from './components/search';
 import Profile from './components/profile';
+import { useState } from 'react';
 
 export default function NavBar() {
+
+
   return (
     <Box>
       <AppBar position="static">

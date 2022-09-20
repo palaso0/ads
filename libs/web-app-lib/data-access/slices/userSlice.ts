@@ -29,7 +29,7 @@ const initialState: userState = {
         userName: "",
 
         clientId: -1,
-        publisherId: -1!,
+        publisherId: -1,
         adminId: -1,
 
         cellphone: "",
@@ -47,8 +47,6 @@ export const userSlice = createSlice({
             state.userData.lastName = action.payload.lastName;
             state.userData.email = action.payload.email;
             state.userData.userName = action.payload.userName;
-
-
         },
         setPublisherState: (state, action) => {
             state.userData.cellphone = action.payload.cellphone;
@@ -57,31 +55,40 @@ export const userSlice = createSlice({
         setUserToken: (state, action) => {
             state.userData.token = action.payload;
             sessionStorage.setItem("token", state.userData.token);
-            console.log("Estado", state.userData.token);
         },
         setClientId: (state, action) => {
-            console.log("Redux cId",action.payload);
             state.userData.clientId = action.payload
-            console.log("ClientId: ", state.userData.clientId);
         },
         setPublisherId: (state, action) => {
             state.userData.publisherId = action.payload
-            console.log("publisherId: ", state.userData.publisherId);
         },
         setAdminId: (state, action) => {
-            console.log("Payload:", action.payload);
             state.userData.adminId = action.payload
-            console.log("admingId: ", state.userData.adminId);
+        },
+        setDefaultValues: (state) => {
+            state.userData.token = "";
+            state.userData.userId = -1;
+            state.userData.name = "";
+            state.userData.lastName = "";
+            state.userData.email = "";
+            state.userData.userName = "";
+            state.userData.clientId = -1;
+            state.userData.publisherId = -1;
+            state.userData.adminId = -1;
+            state.userData.cellphone = "";
+            state.userData.photo = "";
+            sessionStorage.removeItem("token");
         }
     },
 });
 
-export const { setUserState, 
-    setPublisherState, 
-    setUserToken, 
-    setClientId, 
-    setPublisherId, 
-    setAdminId } = userSlice.actions;
+export const { setUserState,
+    setPublisherState,
+    setUserToken,
+    setClientId,
+    setPublisherId,
+    setAdminId,
+    setDefaultValues } = userSlice.actions;
 export const selectUserData = (state: RootState) => state.user.userData;
 
 export default userSlice.reducer;

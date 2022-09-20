@@ -3,13 +3,15 @@ import * as React from 'react';
 import { fetchSignUp, fetchCreateAdmin, fetchCreatePublisher, fetchCreateClient } from '../services/log';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserState, setUserToken, setClientId, setAdminId, setPublisherId, selectUserData } from '../data-access/slices/userSlice';
+import { setUserState, setUserToken, setClientId, setAdminId, setPublisherId, selectUserData, setPublisherState } from '../data-access/slices/userSlice';
 import SignUpForm from '../ui/login/signUpForm';
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
     const [userType, setUserType] = React.useState('CLIENT');
     const dispatch = useDispatch();
     const userData = useSelector(selectUserData)
+    const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -19,6 +21,8 @@ export default function SignUp() {
         const name = formData.get('firstName');
         const lastName = formData.get('lastName');
         const userName = formData.get('userName');
+        const photo = formData.get('photo')?.toString() || "";
+        const cellphone = formData.get('cellphone')?.toString() || "";
 
         fetchSignUp(name, lastName, userName, email, password)
             .then(data => {
@@ -31,21 +35,18 @@ export default function SignUp() {
                             fetchCreateClient(data.data.signup.user.userId)
                                 .then(data => {
                                     if (data.data) {
-                                        console.log("USerId", userData.userId);
-                                        console.log("Respuesta", data);
                                         dispatch(setClientId(data.data.addClient.clientId))
                                     }
                                 })
                             break;
                         }
                         case "PUBLISHER": {
-                            //TODO
-                            const photo = formData.get('photo');
-                            const cellphone = formData.get('cellphone');
-                            fetchCreatePublisher(userData.userId, photo, cellphone)
+                            fetchCreatePublisher(data.data.signup.user.userId, photo, cellphone)
                                 .then(data => {
                                     if (data.data) {
-                                        dispatch(setPublisherId(data.data.addPublisher))
+                                        console.log("Datos Recibidos", data.data);
+                                        dispatch(setPublisherId(data.data.addPublisher.publisherId))
+                                        dispatch(setPublisherState({ photo, cellphone }))
                                     }
                                 })
                             break;
@@ -60,6 +61,7 @@ export default function SignUp() {
                             break;
                         }
                     }
+                    navigate("/home")
                 }
 
             })

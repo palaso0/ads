@@ -120,12 +120,13 @@ export const fetchCreatePublisher = (userId: number, photo: any, cellphone: any)
       query:
         `
         mutation AddPublisher {
-          addPublisher(userId: ${userId}, photo: ${photo}, cellphone: ${cellphone}) {
+          addPublisher(userId: ${userId}, photo: "${photo}", cellphone: "${cellphone}") {
             publisherId
             photo
             cellphone
           }
-        }        
+        }
+             
       `,
       variables: { userId, photo, cellphone }
     })
