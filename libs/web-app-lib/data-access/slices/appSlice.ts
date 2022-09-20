@@ -20,6 +20,7 @@ export const appSlice = createSlice({
         setState: (state, action) => {
             state.appData.token = action.payload.token;
         },
+
     },
 });
 

@@ -54,7 +54,7 @@ export const userSlice = createSlice({
         },
         setUserToken: (state, action) => {
             state.userData.token = action.payload;
-            sessionStorage.setItem("token", state.userData.token);
+            localStorage.setItem("token", state.userData.token);
         },
         setClientId: (state, action) => {
             state.userData.clientId = action.payload
@@ -77,7 +77,7 @@ export const userSlice = createSlice({
             state.userData.adminId = -1;
             state.userData.cellphone = "";
             state.userData.photo = "";
-            sessionStorage.removeItem("token");
+            localStorage.removeItem("token");
         }
     },
 });

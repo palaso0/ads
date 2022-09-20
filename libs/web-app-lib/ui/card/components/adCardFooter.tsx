@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box } from '@mui/material';
-import AdModal from "../../../ui/adModal/AdModal";
+import AdModal from "../../adModal/AdModal";
 
 const AdCardFooter = () => {
     const [openModal, setOpenModal] = React.useState(false);

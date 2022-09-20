@@ -37,28 +37,31 @@ model Admin {
 }
 
 model Publisher {
-  publisherId Int    @id @default(autoincrement())
-  userId      Int    @unique
-  user        User   @relation(fields: [userId], references: [userId])
-  cellphone   String
-  photo       String
+  publisherId  Int    @id @default(autoincrement())
+  userId       Int    @unique
+  user         User   @relation(fields: [userId], references: [userId])
+  cellphone    String
+  photo        String
+  AdsPublished Ad[]
 }
 
 model Category {
   categoryId Int    @id @default(autoincrement())
-  title      String
+  title      String @unique
   Ad         Ad[]
 }
 
 model Ad {
-  adId          Int       @id @default(autoincrement())
-  title         String
-  detail        String
-  photos        String[]
-  keywords      String[]
-  creationDate  DateTime? @default(now())
-  categoryId    Int
-  category      Category  @relation(fields: [categoryId], references: [categoryId])
-  adminId       Int
-  admintCreator Admin     @relation(fields: [adminId], references: [adminId])
+  adId         Int       @id @default(autoincrement())
+  title        String
+  detail       String
+  photos       String[]
+  keywords     String[]
+  creationDate DateTime? @default(now())
+  categoryId   Int
+  category     Category  @relation(fields: [categoryId], references: [categoryId])
+  adminId      Int
+  adminCreator Admin     @relation(fields: [adminId], references: [adminId])
+  publisherId  Int
+  publishedBy  Publisher @relation(fields: [publisherId], references: [publisherId])
 }

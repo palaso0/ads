@@ -35,6 +35,7 @@ export interface NexusGenObjects {
     detail: string; // String!
     keywords: string[]; // [String!]!
     photos: string[]; // [String!]!
+    publisherId: number; // Int!
     title: string; // String!
   }
   Admin: { // root type
@@ -91,6 +92,8 @@ export interface NexusGenFieldTypes {
     detail: string; // String!
     keywords: string[]; // [String!]!
     photos: string[]; // [String!]!
+    publishedBy: NexusGenRootTypes['Publisher'] | null; // Publisher
+    publisherId: number; // Int!
     title: string; // String!
   }
   Admin: { // field return type
@@ -170,6 +173,8 @@ export interface NexusGenFieldTypeNames {
     detail: 'String'
     keywords: 'String'
     photos: 'String'
+    publishedBy: 'Publisher'
+    publisherId: 'Int'
     title: 'String'
   }
   Admin: { // field return type name
@@ -247,6 +252,7 @@ export interface NexusGenArgTypes {
       detail: string; // String!
       keywords: string[]; // [String!]!
       photos: string[]; // [String!]!
+      publisherId: number; // Int!
       title: string; // String!
     }
     addAdmin: { // args

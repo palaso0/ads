@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SignInForm from '../ui/login/signInForm';
-import { fetchSignIn, fetchGetUserType } from '../services/log';
+import { fetchSignIn, fetchGetUserType } from '../services/logServices';
 import { setUserState, setPublisherState, setUserToken, selectUserData, setClientId, setPublisherId, setAdminId } from '../data-access/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";

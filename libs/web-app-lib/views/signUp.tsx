@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { fetchSignUp, fetchCreateAdmin, fetchCreatePublisher, fetchCreateClient } from '../services/log';
+import { fetchSignUp, fetchCreateAdmin, fetchCreatePublisher, fetchCreateClient } from '../services/logServices';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserState, setUserToken, setClientId, setAdminId, setPublisherId, selectUserData, setPublisherState } from '../data-access/slices/userSlice';

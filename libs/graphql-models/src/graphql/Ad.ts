@@ -20,12 +20,20 @@ export const Ad = objectType({
                     .findUnique({ where: { categoryId: parent.categoryId } })
             }
         });
-        t.nonNull.int("adminId")
+        t.nonNull.int("adminId");
         t.field("adminCreator", {
             type: "Admin",
             resolve(parent, args, context) {
                 return context.prisma.admin
                     .findUnique({ where: { adminId: parent.adminId } })
+            }
+        });
+        t.nonNull.int("publisherId");
+        t.field("publishedBy", {
+            type: "Publisher",
+            resolve(parent, args, context) {
+                return context.prisma.publisher
+                    .findUnique({ where: { publisherId: parent.publisherId } })
             }
         })
     }
@@ -68,10 +76,11 @@ export const AdMutation = extendType({
                 photos: nonNull(list(nonNull(stringArg()))),
                 keywords: nonNull(list(nonNull(stringArg()))),
                 categoryId: intArg(),
-                adminId: nonNull(intArg())
+                adminId: nonNull(intArg()),
+                publisherId: nonNull(intArg())
             },
             resolve(parent, args: any, context) {
-                const { title, detail, photos, keywords, categoryId, adminId } = args
+                const { title, detail, photos, keywords, categoryId, adminId, publisherId } = args
                 const newAd = context.prisma.ad.create({
                     data: {
                         title,
@@ -79,7 +88,8 @@ export const AdMutation = extendType({
                         photos,
                         keywords,
                         categoryId,
-                        adminId
+                        adminId,
+                        publisherId
                     }
                 });
                 return newAd
