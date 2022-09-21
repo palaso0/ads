@@ -12,6 +12,7 @@ export const Ad = objectType({
         t.nonNull.string("detail");
         t.nonNull.list.nonNull.string("photos");
         t.nonNull.list.nonNull.string("keywords");
+        t.nonNull.dateTime("creationDate");
         t.nonNull.int("categoryId");
         t.field("category", {
             type: "Category",

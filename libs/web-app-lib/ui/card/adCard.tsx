@@ -7,24 +7,25 @@ import AdCardFooter from './components/adCardFooter';
 
 
 interface IProps {
-  text: string,
+  adId: number,
+  title: string,
   photo: string,
+  date: string,
+  text: string,
   image: string,
 }
 
-const AdCard: React.FC = () =>  {
+const AdCard: React.FC<IProps> = ({ adId, title, photo, date, text, image }) => {
   return (
-    <Card sx={{ width: 345 }}>
-      <AdCardHeader date="24/12/12" photo="https://images-na.ssl-images-amazon.com/images/I/71+mDoHG4mL.png" title="Ad1" />
+    <Card sx={{ width: 345, display:"flex", flexDirection:"column"}}>
+      <AdCardHeader date={date} photo={photo} title={title} />
 
-      <AdCardImage image="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/1200px-Cat_November_2010-1a.jpg"
+      <AdCardImage image={image}
       />
 
-      <AdCardBody text='This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.'/>
+      <AdCardBody text={text}/>
 
-      <AdCardFooter />
+      <AdCardFooter adId={adId} />
 
     </Card>
   );

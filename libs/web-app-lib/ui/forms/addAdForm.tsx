@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Button, Input, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { fetchGetCategories, fetchGetSoftPublishers, fetchCreateAd } from '../../services'
 import Autocomplete from '@mui/material/Autocomplete';
 import { useSelector } from 'react-redux';
@@ -50,7 +50,7 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
         const categoriesObtained = await fetchGetCategories();
         const categoriesJson = await categoriesObtained.json()
         setCategories(categoriesJson.data.categories)
-        
+
         const publishersObtained = await fetchGetSoftPublishers();
         const publishersJson = await publishersObtained.json();
         let publisherList: IPublisher[] = [];

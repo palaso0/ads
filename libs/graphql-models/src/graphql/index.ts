@@ -5,6 +5,7 @@ export * from "./Category"
 export * from "./Client"
 export * from "./Publisher"
 export * from "./User"
+export * from "./scalars/Date";
 
 
 //Generate Schema: 

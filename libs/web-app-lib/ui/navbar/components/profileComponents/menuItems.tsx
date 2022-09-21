@@ -1,7 +1,7 @@
 import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import { selectUserData } from '../../../../data-access/slices/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Logout from './logoutMenuItem'
 import AddCategoryMenuItem from './addCategoryMenuItem'
 import AddAdMenuItem from './addAdMenuItem'

@@ -25,12 +25,11 @@ interface IProps {
 const ModalContainer: React.FC<IProps> = ({ openModal, handleClose, Component }) => {
 
     return (
-        <div>
+        <Box>
             <Modal
                 open={openModal}
                 onClose={handleClose}
             >
-
                 <Box sx={style}>
                     <Box sx={{ width: "100%", display: "flex", alignContent: "flex-end", justifyContent: "flex-end" }}>
                         <IconButton onClick={handleClose}>
@@ -38,11 +37,11 @@ const ModalContainer: React.FC<IProps> = ({ openModal, handleClose, Component })
                         </IconButton>
                     </Box>
                     <Box sx={{ p: 4 }}>
-                        <Component handleClose={handleClose}/>
+                        <Component handleClose={handleClose} />
                     </Box>
                 </Box>
             </Modal>
-        </div>
+        </Box>
 
     );
 }

@@ -6,14 +6,20 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Box } from '@mui/material';
 import AdModal from "../../adModal/AdModal";
 
-const AdCardFooter = () => {
+interface IProps {
+    adId: number
+}
+
+const AdCardFooter: React.FC<IProps> = ({ adId }) => {
     const [openModal, setOpenModal] = React.useState(false);
     const handleOpenModal = () => {
-        setOpenModal(true); 
+        setOpenModal(true);
     };
+
     const handleCloseModal = () => setOpenModal(false);
     return (
-        <Box sx= {{display: 'flex', justifyContent:'space-around'}}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
+
             <IconButton>
                 <FavoriteIcon />
             </IconButton>
@@ -22,7 +28,7 @@ const AdCardFooter = () => {
                 <VisibilityIcon />
             </IconButton>
 
-            <AdModal openModal={openModal} handleCloseModal={handleCloseModal} handleOpenModal={handleOpenModal}/>
+            <AdModal openModal={openModal} handleCloseModal={handleCloseModal} adId={adId} />
         </Box>
     )
 }
