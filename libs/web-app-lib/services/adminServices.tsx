@@ -1,46 +1,119 @@
 export const fetchCreateCategory = (category: any) => {
-    return fetch('http://localhost:3000//graphql', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query:
-          `
+  return fetch('http://localhost:3000//graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      query:
+        `
           mutation AddCategory {
             addCategory(title: "${category}") {
               categoryId
             }
           }          
         `,
-        variables: { category }
-      })
+      variables: { category }
     })
-      .then(r => r.json())
+  })
+    .then(r => r.json())
 }
 
-export const fetchGetAdmins = () => {
-    return fetch('http://localhost:3000//graphql', {
+export const fetchGetCategories = () => {
+  return fetch('http://localhost:3000//graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      query:
+        `
+        query Categories {
+            categories {
+              categoryId
+              title
+            }
+          }                     
+      `
+    })
+  })
+}
+
+export const fetchGetSoftPublishers = () => {
+  return fetch('http://localhost:3000//graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      query:
+        `
+        query Publishers {
+          publishers {
+            publisherId
+            user {
+              name
+              lastName
+            }
+          }
+        }               
+      `
+    })
+  })
+}
+
+export const fetchCreateAd = (title: string, detail: string, photos: string[], keywords: string[], adminId: number, publisherId: number, categoryId: number) => {
+  return fetch('http://localhost:3000//graphql', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
       },
       body: JSON.stringify({
-        query:
-          `
-          query Query {
-            admins {
-              adminId
-              user {
-                name
-                lastName
-              }
+          query:
+              `
+              mutation AddAd(
+                  $addAdTitle: String!
+                  $addAdDetail: String!
+                  $addAdPhotos: [String!]!
+                  $addAdKeywords: [String!]!
+                  $addAdAdminId: Int!
+                  $addAdPublisherId: Int!
+                  $addAdCategoryId: Int
+                ) {
+                  addAd(
+                    title: $addAdTitle
+                    detail: $addAdDetail
+                    photos: $addAdPhotos
+                    keywords: $addAdKeywords
+                    adminId: $addAdAdminId
+                    publisherId: $addAdPublisherId
+                    categoryId: $addAdCategoryId
+                  ) {
+                    adId
+                    title
+                    detail
+                    photos
+                    keywords
+                    categoryId
+                    adminId
+                    publisherId
+                  }
+                }
+                          
+      `,
+          variables: {
+              "addAdTitle": title,
+              "addAdDetail": detail,
+              "addAdPhotos": photos,
+              "addAdKeywords": keywords,
+              "addAdAdminId": adminId,
+              "addAdPublisherId": publisherId,
+              "addAdCategoryId": categoryId
             }
-          }        
-        `
       })
-    })
-      .then(r => r.json())
+  })
 }

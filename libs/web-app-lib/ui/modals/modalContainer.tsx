@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { IconButton } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
 
 
 const style = {

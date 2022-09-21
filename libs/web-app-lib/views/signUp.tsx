@@ -77,19 +77,6 @@ export default function SignUp() {
                 userType={userType}
                 setUserType={setUserType}
             />
-
-            <p> {userData.userId}</p>
-            <p>{userData.token}</p>
-            <p>{userData.name}</p>
-            <p>{userData.lastName}</p>
-            <p>clientId: {userData.clientId}</p>
-            <p>publisherId: {userData.publisherId}</p>
-            <p>adminId: {userData.adminId}</p>
-
-            <p>userName: {userData.userName}</p>
-            <p>email: {userData.email}</p>
-            <p>photo: {userData.photo}</p>
-            <p>cellphone: {userData.cellphone}</p>
         </>
     );
 }

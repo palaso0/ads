@@ -41,8 +41,6 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) =
         <Container component="main" maxWidth="xs">
             <CssBaseline />
 
-            <p>{userType}</p>
-
             <Box
                 sx={{
                     marginTop: 8,
