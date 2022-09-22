@@ -7,7 +7,7 @@ export default function Copyright(props: any) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" sx={sx}>
         {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
+        <Link color="inherit" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
           Orion's Adds
         </Link>{' '}
         {new Date().getFullYear()}

@@ -4,10 +4,12 @@
 generator client {
   provider = "prisma-client-js"
 }
+// Mac mini url
+// url      = "postgres://postgres:postgres@localhost:5432/orionDB"
 
 datasource db {
   provider = "postgresql"
-  url      = "postgres://postgres:postgres@localhost:5432/orionDB"
+  url      = "postgres://paulo:123@localhost:5432/orionDB"
 }
 
 model User {

@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Copyright from '../../ui/copyright/copyRight';
+import Copyright from './copyright/copyRight';
 import { Link as RouteLink } from "react-router-dom";
 import MenuItem from '@mui/material/MenuItem';
 
@@ -50,6 +50,16 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) =
                 }}
             >
 
+
+
+
+                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5">
+                    Sign up
+                </Typography>
+
                 <TextField
                     id="outlined-select-currency"
                     select
@@ -57,6 +67,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) =
                     value={userType}
                     onChange={handleChangeUserType}
                     helperText="Please select your user Type"
+                    sx={{ m: 2 }}
                 >
                     {USERS_TYPES.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
@@ -65,12 +76,6 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) =
                     ))}
                 </TextField>
 
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                    <LockOutlinedIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
-                </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>

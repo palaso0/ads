@@ -3,7 +3,7 @@ import { join } from "path";
 import * as types from '../../../../libs/graphql-models/src/graphql'
 
 export const schema = makeSchema({
-    types, // 1
+    types,
     outputs: {
       schema: join(process.cwd(), "libs/graphql-models/src/nexus-models/schema.graphql"), 
       typegen: join(process.cwd(), "libs/graphql-models/src/nexus-models/nexus-typegen.ts"),  

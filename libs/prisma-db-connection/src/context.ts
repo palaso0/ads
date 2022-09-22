@@ -24,3 +24,7 @@ export const context = ({ req }: { req: Request }): Context => {   // 2
 
 // To run prisma migration: (You have to be in the folder)
 // npx prisma migrate dev --name "init" 
+
+
+// Mac mini url
+// url      = "postgres://postgres:postgres@localhost:5432/orionDB"
