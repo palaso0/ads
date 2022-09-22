@@ -92,7 +92,6 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
                 width: "100%"
             }}
             noValidate
-            autoComplete="ocreateAddff"
             onSubmit={createAdd}
         >
             <Typography variant='h5'>Add Ad</Typography>

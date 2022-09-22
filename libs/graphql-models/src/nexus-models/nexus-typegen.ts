@@ -79,6 +79,10 @@ export interface NexusGenObjects {
     userId: number; // Int!
   }
   Query: {};
+  SuggestedCategory: { // root type
+    suggestedCategoryId: number; // Int!
+    title: string; // String!
+  }
   User: { // root type
     email: string; // String!
     lastName: string; // String!
@@ -138,6 +142,7 @@ export interface NexusGenFieldTypes {
     addCategory: NexusGenRootTypes['Category']; // Category!
     addClient: NexusGenRootTypes['Client']; // Client!
     addPublisher: NexusGenRootTypes['Publisher']; // Publisher!
+    addSuggestedCategory: NexusGenRootTypes['SuggestedCategory']; // SuggestedCategory!
     addUser: NexusGenRootTypes['User']; // User!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     removeAdd: NexusGenRootTypes['Ad']; // Ad!
@@ -145,6 +150,7 @@ export interface NexusGenFieldTypes {
     removeCategory: NexusGenRootTypes['Category']; // Category!
     removeClient: NexusGenRootTypes['Client']; // Client!
     removePublisher: NexusGenRootTypes['Publisher']; // Publisher!
+    removeSuggestedCategory: NexusGenRootTypes['SuggestedCategory']; // SuggestedCategory!
     removeUser: NexusGenRootTypes['User']; // User!
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
     updatePublisher: NexusGenRootTypes['Publisher']; // Publisher!
@@ -168,8 +174,14 @@ export interface NexusGenFieldTypes {
     clients: NexusGenRootTypes['Client'][]; // [Client!]!
     publisher: NexusGenRootTypes['Publisher'][]; // [Publisher!]!
     publishers: NexusGenRootTypes['Publisher'][]; // [Publisher!]!
+    suggestedCategories: NexusGenRootTypes['SuggestedCategory'][]; // [SuggestedCategory!]!
+    suggestedCategory: NexusGenRootTypes['SuggestedCategory'][]; // [SuggestedCategory!]!
     user: NexusGenRootTypes['User'][]; // [User!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
+  }
+  SuggestedCategory: { // field return type
+    suggestedCategoryId: number; // Int!
+    title: string; // String!
   }
   User: { // field return type
     email: string; // String!
@@ -220,6 +232,7 @@ export interface NexusGenFieldTypeNames {
     addCategory: 'Category'
     addClient: 'Client'
     addPublisher: 'Publisher'
+    addSuggestedCategory: 'SuggestedCategory'
     addUser: 'User'
     login: 'AuthPayload'
     removeAdd: 'Ad'
@@ -227,6 +240,7 @@ export interface NexusGenFieldTypeNames {
     removeCategory: 'Category'
     removeClient: 'Client'
     removePublisher: 'Publisher'
+    removeSuggestedCategory: 'SuggestedCategory'
     removeUser: 'User'
     signup: 'AuthPayload'
     updatePublisher: 'Publisher'
@@ -250,8 +264,14 @@ export interface NexusGenFieldTypeNames {
     clients: 'Client'
     publisher: 'Publisher'
     publishers: 'Publisher'
+    suggestedCategories: 'SuggestedCategory'
+    suggestedCategory: 'SuggestedCategory'
     user: 'User'
     users: 'User'
+  }
+  SuggestedCategory: { // field return type name
+    suggestedCategoryId: 'Int'
+    title: 'String'
   }
   User: { // field return type name
     email: 'String'
@@ -288,6 +308,9 @@ export interface NexusGenArgTypes {
       photo: string; // String!
       userId: number; // Int!
     }
+    addSuggestedCategory: { // args
+      title: string; // String!
+    }
     addUser: { // args
       email: string; // String!
       lastName: string; // String!
@@ -313,6 +336,9 @@ export interface NexusGenArgTypes {
     }
     removePublisher: { // args
       publisherId: number; // Int!
+    }
+    removeSuggestedCategory: { // args
+      suggestedCategoryId: number; // Int!
     }
     removeUser: { // args
       userId: number; // Int!
@@ -352,6 +378,9 @@ export interface NexusGenArgTypes {
     }
     publisher: { // args
       userId: number; // Int!
+    }
+    suggestedCategory: { // args
+      suggestedCategoryId: number; // Int!
     }
     user: { // args
       userId: number; // Int!

@@ -26,9 +26,9 @@ export default function SignIn() {
               if (data.data.client.length > 0) {
                 dispatch(setClientId(data.data.client[0].clientId))
               }
-              if (data.data.publisher.length > 0) {
-                console.log("Modificando publisher");
+              if (data.data.publisher.length > 0) {                
                 dispatch(setPublisherState(data.data.publisher[0]))
+                dispatch(setPublisherId(data.data.publisher[0].publisherId))
               }
               if (data.data.admin.length > 0) {
                 dispatch(setAdminId(data.data.admin[0].adminId))

@@ -36,6 +36,7 @@ const AdCategoryForm: React.FC<IProps> = ({ handleClose }) => {
             autoComplete="off"
             onSubmit={createCategory}
         >
+
             <Typography variant='h5'>Add Category</Typography>
 
             <TextField label="Category name" name="categoryName" />

@@ -50,6 +50,7 @@ type Mutation {
   addCategory(title: String!): Category!
   addClient(userId: Int!): Client!
   addPublisher(cellphone: String!, photo: String!, userId: Int!): Publisher!
+  addSuggestedCategory(title: String!): SuggestedCategory!
   addUser(email: String!, lastName: String!, name: String!, password: String!, userName: String!): User!
   login(email: String!, password: String!): AuthPayload!
   removeAdd(adId: Int!): Ad!
@@ -57,6 +58,7 @@ type Mutation {
   removeCategory(categoryId: Int!): Category!
   removeClient(clientId: Int!): Client!
   removePublisher(publisherId: Int!): Publisher!
+  removeSuggestedCategory(suggestedCategoryId: Int!): SuggestedCategory!
   removeUser(userId: Int!): User!
   signup(email: String!, lastName: String!, name: String!, password: String!, userName: String!): AuthPayload!
   updatePublisher(cellphone: String, photo: String, publisherId: Int!): Publisher!
@@ -82,8 +84,15 @@ type Query {
   clients: [Client!]!
   publisher(userId: Int!): [Publisher!]!
   publishers: [Publisher!]!
+  suggestedCategories: [SuggestedCategory!]!
+  suggestedCategory(suggestedCategoryId: Int!): [SuggestedCategory!]!
   user(userId: Int!): [User!]!
   users: [User!]!
+}
+
+type SuggestedCategory {
+  suggestedCategoryId: Int!
+  title: String!
 }
 
 type User {

@@ -3,13 +3,10 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Home from './components/home';
-import Favorite from './components/favorite';
 import Search from './components/search';
-import Profile from './components/profile';
-import { useState } from 'react';
+import UserButtons from './components/userButtons';
 
 export default function NavBar() {
-
 
   return (
     <Box>
@@ -24,10 +21,9 @@ export default function NavBar() {
           </Box>
 
           <Box sx={{ display: 'flex' }}>
-            <Favorite />
+            <Search />
+            <UserButtons />
 
-            <Search/>
-            <Profile/>
           </Box>
 
         </Toolbar>

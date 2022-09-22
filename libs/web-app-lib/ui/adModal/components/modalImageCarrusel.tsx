@@ -37,13 +37,14 @@ const ModalImageCarrusel: React.FC<IProps> = ({ images }) => {
                     enableMouseEvents
                 >
                     {images.map((img) => (
-                        <div key={img}>
+                        <Box key={img} sx={{display: "flex", justifyContent: "center"}}>
                             <Box
                                 component="img"
                                 src={img}
-                                sx={{width:"100%", height:"250px"}}
+                                sx={{ height:"250px", maxWidth: "100%"}}
+
                             />
-                        </div>
+                        </Box>
                     ))}
                 </AutoPlaySwipeableViews>
                 <MobileStepper

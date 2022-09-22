@@ -6,10 +6,11 @@ generator client {
 }
 // Mac mini url
 // url      = "postgres://postgres:postgres@localhost:5432/orionDB"
-
+// MacBook pro url
+  // url      = "postgres://paulo:123@localhost:5432/orionDB"
 datasource db {
   provider = "postgresql"
-  url      = "postgres://paulo:123@localhost:5432/orionDB"
+  url      = "postgres://postgres:postgres@localhost:5432/orionDB"
 }
 
 model User {
@@ -66,4 +67,10 @@ model Ad {
   adminCreator Admin     @relation(fields: [adminId], references: [adminId])
   publisherId  Int
   publishedBy  Publisher @relation(fields: [publisherId], references: [publisherId])
+}
+
+
+model SuggestedCategory{
+  suggestedCategoryId Int    @id @default(autoincrement())
+  title      String @unique
 }

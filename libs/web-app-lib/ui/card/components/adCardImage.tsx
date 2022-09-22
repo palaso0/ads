@@ -9,9 +9,10 @@ const AdCardImage: React.FC<IProps> = ({image}) => {
     return (
         <CardMedia
         component="img"
-        height="194"
+        
         image={image}
         alt="Ad Image"
+        sx={{ height:"194px"}}
       />
     )
 }
