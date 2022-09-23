@@ -1,9 +1,9 @@
 import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import ModalContainer from '../../../modals/modalContainer'
-import AdCategoryForm from '../../../forms/addCategoryForm'
+import ReviewSuggestedCategoryForm from '../../../forms/reviewSuggestedForm';
 
-const AdCategoryMenuItem = () => {
+const ReviewSuggestedCategoryMenuItem = () => {
     const [openModal, setOpenModal] = React.useState(false);
 
     const handleOpenModal = () => setOpenModal(true);
@@ -11,12 +11,13 @@ const AdCategoryMenuItem = () => {
 
     return (
         <>
-            <MenuItem onClick={handleOpenModal}>Add Category</MenuItem>
+            <MenuItem onClick={handleOpenModal}>Suggested Categories</MenuItem>
             <ModalContainer openModal={openModal} handleClose={handleCloseModal}
-                Component={AdCategoryForm}
+                Component={ReviewSuggestedCategoryForm}
             />
         </>
+
     )
 }
 
-export default AdCategoryMenuItem
+export default ReviewSuggestedCategoryMenuItem

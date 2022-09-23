@@ -1,8 +1,7 @@
 import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import ModalContainer from '../../../modals/modalContainer'
-import AdCategoryForm from '../../../forms/addCategoryForm'
-
+import AddSuggestedCategoryForm from '../../../forms/addSuggestCategoryForm';
 
 const AddSuggestedCategoryMenuItem = () => {
     const [openModal, setOpenModal] = React.useState(false);
@@ -12,12 +11,10 @@ const AddSuggestedCategoryMenuItem = () => {
 
     return (
         <>
-            <>
-                <MenuItem onClick={handleOpenModal}>Suggest Category</MenuItem>
-                <ModalContainer openModal={openModal} handleClose={handleCloseModal}
-                    Component={AdCategoryForm}
-                />
-            </>
+            <MenuItem onClick={handleOpenModal}>Suggest Category</MenuItem>
+            <ModalContainer openModal={openModal} handleClose={handleCloseModal}
+                Component={AddSuggestedCategoryForm}
+            />
         </>
     )
 }

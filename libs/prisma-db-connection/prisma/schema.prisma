@@ -10,7 +10,7 @@ generator client {
   // url      = "postgres://paulo:123@localhost:5432/orionDB"
 datasource db {
   provider = "postgresql"
-  url      = "postgres://postgres:postgres@localhost:5432/orionDB"
+  url      = "postgres://paulo:123@localhost:5432/orionDB"
 }
 
 model User {

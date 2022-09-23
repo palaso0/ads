@@ -67,14 +67,14 @@ export const fetchGetSoftPublishers = () => {
 
 export const fetchCreateAd = (title: string, detail: string, photos: string[], keywords: string[], adminId: number, publisherId: number, categoryId: number) => {
   return fetch('http://localhost:3000//graphql', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-          query:
-              `
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      query:
+        `
               mutation AddAd(
                   $addAdTitle: String!
                   $addAdDetail: String!
@@ -105,15 +105,59 @@ export const fetchCreateAd = (title: string, detail: string, photos: string[], k
                 }
                           
       `,
-          variables: {
-              "addAdTitle": title,
-              "addAdDetail": detail,
-              "addAdPhotos": photos,
-              "addAdKeywords": keywords,
-              "addAdAdminId": adminId,
-              "addAdPublisherId": publisherId,
-              "addAdCategoryId": categoryId
-            }
-      })
+      variables: {
+        "addAdTitle": title,
+        "addAdDetail": detail,
+        "addAdPhotos": photos,
+        "addAdKeywords": keywords,
+        "addAdAdminId": adminId,
+        "addAdPublisherId": publisherId,
+        "addAdCategoryId": categoryId
+      }
+    })
+  })
+}
+
+export const fetchGetSuggestedCategories = () => {
+  return fetch('http://localhost:3000//graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      query:
+        `
+        query SuggestedCategories {
+          suggestedCategories {
+            suggestedCategoryId
+            title
+          }
+        }             
+      `
+    })
+  })
+}
+
+export const fetchRemoveSuggestedCategory = (id: number) => {
+  return fetch('http://localhost:3000/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      query:
+        `
+        mutation RemoveSuggestedCategory($suggestedCategoryId: Int!) {
+          removeSuggestedCategory(suggestedCategoryId: $suggestedCategoryId) {
+            suggestedCategoryId
+          }
+        }    
+        `,
+      variables: {
+        "suggestedCategoryId": id
+      }
+    })
   })
 }
