@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { fetchSignUp, fetchCreateAdmin, fetchCreatePublisher, fetchCreateClient } from '../services/logServices';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserState, setUserToken, setClientId, setAdminId, setPublisherId, selectUserData, setPublisherState } from '../data-access/slices/userSlice';
+import { useDispatch } from 'react-redux';
+import { setUserState, setUserToken, setClientId, setAdminId, setPublisherId, setPublisherState } from '../data-access/slices/userSlice';
 import SignUpForm from '../ui/login/signUpForm';
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
     const [userType, setUserType] = React.useState('CLIENT');
+    const [errorMessage, setErrorMessage] = React.useState("");
     const dispatch = useDispatch();
-    const userData = useSelector(selectUserData)
     const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -61,6 +61,9 @@ export default function SignUp() {
                     }
                     navigate("/home")
                 }
+                else {
+                    setErrorMessage("Not valid User");
+                }
 
             })
 
@@ -69,12 +72,11 @@ export default function SignUp() {
 
 
     return (
-        <>
-            <SignUpForm
-                handleSubmit={handleSubmit}
-                userType={userType}
-                setUserType={setUserType}
-            />
-        </>
+        <SignUpForm
+            handleSubmit={handleSubmit}
+            userType={userType}
+            setUserType={setUserType}
+            errorMessage={errorMessage}
+        />
     );
 }

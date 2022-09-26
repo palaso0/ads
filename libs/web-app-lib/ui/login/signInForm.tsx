@@ -14,9 +14,11 @@ import { Link as RouteLink } from "react-router-dom";
 
 interface IProps {
     handleSubmit: any,
+    errorMessage: string,
 }
 
-const SignInForm: React.FC<IProps> = ({handleSubmit}) => {
+const SignInForm: React.FC<IProps> = ({handleSubmit,errorMessage}) => {
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -64,11 +66,10 @@ const SignInForm: React.FC<IProps> = ({handleSubmit}) => {
                     >
                         Sign In
                     </Button>
+                    <Typography color={"red"} sx={{m: "auto"}}>{errorMessage}</Typography>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="#" variant="body2">
-                                Forgot password?
-                            </Link>
+                            
                         </Grid>
                         <Grid item>
                             <RouteLink to="/signUp">

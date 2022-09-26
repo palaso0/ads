@@ -7,7 +7,7 @@ import { fetchGetCategories, fetchGetSoftPublishers, fetchCreateAd } from '../..
 import Autocomplete from '@mui/material/Autocomplete';
 import { useSelector } from 'react-redux';
 import { selectUserData } from '../../data-access/slices/userSlice'
-
+import AddAdFormImagesInput from './addAdFormComponents/addAdFormImagesInput'
 interface IProps {
     handleClose: any
 }
@@ -23,8 +23,6 @@ interface IPublisher {
     name: string;
 }
 
-
-
 const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
     const userData = useSelector(selectUserData)
     const [categories, setCategories] = useState<ICategory[]>([])
@@ -32,12 +30,12 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
     const [newAd, setNewAd] = useState({
         title: "",
         detail: "",
-        photos: "",
+        photos: [],
         keywords: "",
         categoryId: -1,
         publisherId: -1,
     })
-    
+
     const handleChangeAd = (e: any) => {
         const { name, value } = e.target;
         setNewAd((prevState: any) => ({
@@ -70,7 +68,7 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
 
     const createAdd = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        fetchCreateAd(newAd.title, newAd.detail, newAd.photos.split(","), newAd.keywords.split(","), userData.adminId, newAd.publisherId, newAd.categoryId)
+        fetchCreateAd(newAd.title, newAd.detail, newAd.photos, newAd.keywords.split(","), userData.adminId, newAd.publisherId, newAd.categoryId)
             .then(r => r.json())
             .then(
                 data => {
@@ -94,11 +92,13 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
             noValidate
             onSubmit={createAdd}
         >
-            <Typography variant='h5'>Add Ad</Typography>
+            <Typography variant='h4'>New Ad</Typography>
 
             <TextField label="Title" name="title" onChange={handleChangeAd} />
-            <TextField label="Detail" name="detail" onChange={handleChangeAd} />
+            <TextField label="Detail" name="detail" onChange={handleChangeAd} multiline={true}
+                rows={3} />
             <TextField label="Photos (separated by coma)" name="photos" onChange={handleChangeAd} />
+            <AddAdFormImagesInput  newAd={newAd} setNewAd={setNewAd}  />
             <TextField label="Keywords (separated by coma)" name="keywords" onChange={handleChangeAd} />
 
             <Autocomplete

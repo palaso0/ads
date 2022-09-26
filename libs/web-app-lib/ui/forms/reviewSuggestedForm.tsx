@@ -6,7 +6,7 @@ import SuggestedCategoryItem from './suggestedCategoryItem/suggestedCategoryItem
 import { Typography } from '@mui/material';
 
 interface IProps {
-    handleClose: any
+    handleClose: () => void
 }
 
 interface ISuggestedCategories {

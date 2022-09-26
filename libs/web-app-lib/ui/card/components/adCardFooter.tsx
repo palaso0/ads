@@ -18,11 +18,7 @@ const AdCardFooter: React.FC<IProps> = ({ adId }) => {
 
     const handleCloseModal = () => setOpenModal(false);
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
-
-            <IconButton>
-                <FavoriteIcon />
-            </IconButton>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap:3 }}>
 
             <IconButton onClick={handleOpenModal}>
                 <VisibilityIcon />

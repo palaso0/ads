@@ -27,14 +27,13 @@ const USERS_TYPES = [
 
 
 interface IProps {
-    handleSubmit: any, userType: any, setUserType: any
+    handleSubmit: any, userType: any, setUserType: any, errorMessage: string;
 }
 
-const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) => {
+const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, errorMessage }) => {
 
     const handleChangeUserType = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUserType(event.target.value);
-        console.log(userType);
     };
 
     return (
@@ -49,10 +48,6 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) =
                     alignItems: 'center',
                 }}
             >
-
-
-
-
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlinedIcon />
                 </Avatar>
@@ -128,7 +123,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) =
                             />
                         </Grid>
                         {
-                            userType !== "PUBLISHER" ? <></> :
+                            userType !== "PUBLISHER" ? "" :
                                 <>
                                     <Grid item xs={12} sm={6}>
                                         <TextField
@@ -158,6 +153,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType }) =
                     >
                         Sign Up
                     </Button>
+                    <Typography color={"red"}>{errorMessage}</Typography>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
                             <RouteLink to="/signIn">

@@ -5,10 +5,11 @@ import { Button, Typography } from '@mui/material';
 import { fetchCreateCategory } from '../../services'
 
 interface IProps {
-    handleClose: any
+    handleClose: () => void
 }
 
 const AdCategoryForm: React.FC<IProps> = ({ handleClose }) => {
+    const [errorMessage, setErrorMessage] = React.useState('');
     const createCategory = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -19,6 +20,9 @@ const AdCategoryForm: React.FC<IProps> = ({ handleClose }) => {
                 data => {
                     if (data.data) {
                         handleClose()
+                    }
+                    else {
+                        setErrorMessage("Category already added")
                     }
                 }
             )
@@ -40,7 +44,7 @@ const AdCategoryForm: React.FC<IProps> = ({ handleClose }) => {
             <Typography variant='h5'>Add Category</Typography>
 
             <TextField label="Category name" name="categoryName" />
-
+            <Typography color={"red"} >{errorMessage}</Typography>
             <Button type='submit' variant="outlined">Accept</Button>
         </Box>
     )

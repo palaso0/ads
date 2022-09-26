@@ -1,14 +1,14 @@
 import * as React from 'react';
 import SignInForm from '../ui/login/signInForm';
 import { fetchSignIn, fetchGetUserType } from '../services/logServices';
-import { setUserState, setPublisherState, setUserToken, selectUserData, setClientId, setPublisherId, setAdminId } from '../data-access/slices/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { setUserState, setPublisherState, setUserToken, setClientId, setPublisherId, setAdminId } from '../data-access/slices/userSlice';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-  const userData = useSelector(selectUserData)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = React.useState('')
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +26,7 @@ export default function SignIn() {
               if (data.data.client.length > 0) {
                 dispatch(setClientId(data.data.client[0].clientId))
               }
-              if (data.data.publisher.length > 0) {                
+              if (data.data.publisher.length > 0) {
                 dispatch(setPublisherState(data.data.publisher[0]))
                 dispatch(setPublisherId(data.data.publisher[0].publisherId))
               }
@@ -34,14 +34,15 @@ export default function SignIn() {
                 dispatch(setAdminId(data.data.admin[0].adminId))
               }
             })
-            navigate("/home")
+          navigate("/home")
+        }
+        else {
+          setErrorMessage("User not found")
         }
       })
   };
 
   return (
-    <>
-      <SignInForm handleSubmit={handleSubmit} />
-    </>
+    <SignInForm handleSubmit={handleSubmit} errorMessage={errorMessage} />
   );
 }
