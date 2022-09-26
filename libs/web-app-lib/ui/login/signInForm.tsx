@@ -41,7 +41,8 @@ const SignInForm: React.FC<IProps> = ({handleSubmit,errorMessage}) => {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
+                        id="signin-email-text-field"
+                        data-testid="signin-email-text-field"
                         label="Email Address"
                         name="email"
                         autoComplete="email"

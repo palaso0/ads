@@ -8,10 +8,10 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useSelector } from 'react-redux';
 import { selectUserData } from '../../data-access/slices/userSlice'
 import AddAdFormImagesInput from './addAdFormComponents/addAdFormImagesInput'
+
 interface IProps {
     handleClose: any
 }
-
 
 interface ICategory {
     catetoryId: number;
@@ -94,12 +94,12 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
         >
             <Typography variant='h4'>New Ad</Typography>
 
-            <TextField label="Title" name="title" onChange={handleChangeAd} />
+            <TextField label="Title" name="title" onChange={handleChangeAd} sx={{ width: "80%" }} />
             <TextField label="Detail" name="detail" onChange={handleChangeAd} multiline={true}
-                rows={3} />
+                rows={3} sx={{ width: "80%" }} />
             <TextField label="Photos (separated by coma)" name="photos" onChange={handleChangeAd} />
-            <AddAdFormImagesInput  newAd={newAd} setNewAd={setNewAd}  />
-            <TextField label="Keywords (separated by coma)" name="keywords" onChange={handleChangeAd} />
+            <AddAdFormImagesInput newAd={newAd} setNewAd={setNewAd} />
+            <TextField label="Keywords (separated by coma)" name="keywords" onChange={handleChangeAd} sx={{ width: "50%" }} />
 
             <Autocomplete
                 disablePortal

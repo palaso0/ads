@@ -1,0 +1,15 @@
+import SignIn from '../../views/signIn'
+import { render } from '@testing-library/react';
+import AppWrapper from '../utils/appWrapper'
+
+import '@testing-library/jest-dom/extend-expect'
+
+describe('SignIn', () => {
+  it('should render the component SignUp', () => {
+
+    const component = render(<AppWrapper Component={SignIn} />);
+
+    expect(component).toMatchSnapshot();
+
+  });
+})
