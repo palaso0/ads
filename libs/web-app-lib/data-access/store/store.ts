@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import userSlice from '../slices/userSlice';
 import appSlice from '../slices/appSlice';
+import adSlice from '../slices/adSlice';
 
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    app: appSlice
+    app: appSlice,
+    ad: adSlice,
   },
 });
 

@@ -34,7 +34,9 @@ const AdCategoryForm: React.FC<IProps> = ({ handleClose }) => {
                 display: "flex",
                 flexDirection: "column",
                 gap: 3,
-                alignItems: "center"
+                alignItems: "center",
+                justifyContent: "center",
+                alignContent: "center"
             }}
             noValidate
             autoComplete="off"

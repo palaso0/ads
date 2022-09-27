@@ -1,6 +1,7 @@
 import { extendType, idArg, intArg, nonNull, objectType, stringArg } from "nexus";
 import { ArgsRecord, list } from "nexus/dist/core";
 import { resolve } from "path";
+import { text } from "stream/consumers";
 import { NexusGenObjects } from "../nexus-models/nexus-typegen";
 
 
@@ -58,6 +59,19 @@ export const AdQuery = extendType({
                 return context.prisma.ad.findMany({
                     where: {
                         adId: args.adId,
+                    }
+                })
+            }
+        });
+        t.nonNull.list.field("search",{
+            type: "Ad",
+            args: {
+                text: nonNull(stringArg())
+            },
+            resolve(parent,args,context,info){
+                return context.prisma.ad.findMany({
+                    where: { 
+                        title: args.text,
                     }
                 })
             }

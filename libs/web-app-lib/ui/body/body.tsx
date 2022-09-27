@@ -2,6 +2,8 @@ import AdCard from "../card/adCard";
 import { Box } from "@mui/system";
 import { fetchGetSoftAds } from "../../services"
 import { useEffect, useState } from "react";
+import { selectAdData,setAdState } from '../../data-access/slices/adSlice'
+import { useSelector, useDispatch } from 'react-redux';
 
 interface ISoftAd {
     adId: number,
@@ -13,8 +15,8 @@ interface ISoftAd {
 }
 
 export default function Body() {
-    const [ads, setAds] = useState<ISoftAd[]>([])
-
+    const dispatch = useDispatch();
+    const adData = useSelector(selectAdData)
     const loadAdData = async () => {
         const dataObtained = await fetchGetSoftAds();
         const adJson = await dataObtained.json();
@@ -30,7 +32,8 @@ export default function Body() {
             }
             adList.push(newAd);
         })
-        setAds(adList);
+        dispatch(setAdState(adList))    
+        console.log(adData);
     }
 
     useEffect(() => {
@@ -49,7 +52,7 @@ export default function Body() {
             }
         }>
             {
-                ads.map((ad: any) => {
+                adData.map((ad: any) => {
                     return <AdCard
                         key={ad.adId}
                         adId={ad.adId}
@@ -61,6 +64,5 @@ export default function Body() {
                 })
             }
         </Box>
-
     )
 }

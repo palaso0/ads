@@ -30,6 +30,19 @@ export const CategoryQuery = extendType({
                     }
                 });
             }
+        });
+        t.field("SearchCategoryByTitle",{
+            type: "Category",
+            args: {
+                categoryTitle: nonNull(stringArg()),
+            },
+            resolve(parent, args,context,info){
+                return context.prisma.category.findUnique({
+                    where: {
+                        title: args.categoryTitle
+                    }
+                })
+            }
         })
     }
 })

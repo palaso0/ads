@@ -7,7 +7,9 @@ import ModalImageCarrusel from './components/modalImageCarrusel'
 import ModalBody from './components/modalBody'
 import ModalPublisher from './components/modalPublisher'
 import ModalFooting from './components/modalFooting'
+import ModalKeywords from './components/modalKeywords';
 import { fetchGetAd } from '../../services'
+import { Button } from '@mui/material';
 
 interface IProps {
     adId: number,
@@ -25,6 +27,8 @@ interface IAd {
     email: string,
     name: string,
     lastName: string,
+    category: string,
+    keywords: string[],
 }
 
 const AdModalBox: React.FC<IProps> = ({ adId, handleCloseModal }) => {
@@ -40,6 +44,8 @@ const AdModalBox: React.FC<IProps> = ({ adId, handleCloseModal }) => {
             email: "",
             name: "",
             lastName: "",
+            category: "",
+            keywords: []
         }
     );
 
@@ -58,19 +64,22 @@ const AdModalBox: React.FC<IProps> = ({ adId, handleCloseModal }) => {
             email: adItem.publishedBy.user.email,
             name: adItem.publishedBy.user.name,
             lastName: adItem.publishedBy.user.lastName,
+            category: adItem.category.title,
+            keywords: adItem.keywords,
         }
         setAd(adClean)
     }
 
     useEffect(() => {
-        console.log("Holaa");
         loadAdData()
+        
     }, [])
 
     return (
         <Box sx={modalStyle}>
-            <ModalHeader date={ad.date} photo={ad.photo} title={ad.title} userName={ad.userName} />
+            <ModalHeader date={ad.date} photo={ad.photo} title={ad.title} userName={ad.userName} category={ad.category}/>
             <ModalImageCarrusel images={ad.images} />
+            <ModalKeywords keywords={ad.keywords} />
             <ModalBody text={ad.description} />
             <ModalPublisher email={ad.email} lastName={ad.lastName} name={ad.lastName} cellphone={ad.cellphone} />
             <ModalFooting handleCloseModal={handleCloseModal} />

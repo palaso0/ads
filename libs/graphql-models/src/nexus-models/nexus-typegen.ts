@@ -164,6 +164,7 @@ export interface NexusGenFieldTypes {
     userId: number; // Int!
   }
   Query: { // field return type
+    SearchCategoryByTitle: NexusGenRootTypes['Category'] | null; // Category
     ad: NexusGenRootTypes['Ad'][]; // [Ad!]!
     admin: NexusGenRootTypes['Admin'][]; // [Admin!]!
     admins: NexusGenRootTypes['Admin'][]; // [Admin!]!
@@ -174,6 +175,7 @@ export interface NexusGenFieldTypes {
     clients: NexusGenRootTypes['Client'][]; // [Client!]!
     publisher: NexusGenRootTypes['Publisher'][]; // [Publisher!]!
     publishers: NexusGenRootTypes['Publisher'][]; // [Publisher!]!
+    search: Array<NexusGenRootTypes['Ad'] | null>; // [Ad]!
     suggestedCategories: NexusGenRootTypes['SuggestedCategory'][]; // [SuggestedCategory!]!
     suggestedCategory: NexusGenRootTypes['SuggestedCategory'][]; // [SuggestedCategory!]!
     user: NexusGenRootTypes['User'][]; // [User!]!
@@ -254,6 +256,7 @@ export interface NexusGenFieldTypeNames {
     userId: 'Int'
   }
   Query: { // field return type name
+    SearchCategoryByTitle: 'Category'
     ad: 'Ad'
     admin: 'Admin'
     admins: 'Admin'
@@ -264,6 +267,7 @@ export interface NexusGenFieldTypeNames {
     clients: 'Client'
     publisher: 'Publisher'
     publishers: 'Publisher'
+    search: 'Ad'
     suggestedCategories: 'SuggestedCategory'
     suggestedCategory: 'SuggestedCategory'
     user: 'User'
@@ -364,6 +368,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    SearchCategoryByTitle: { // args
+      categoryTitle: string; // String!
+    }
     ad: { // args
       adId: number; // Int!
     }
@@ -378,6 +385,9 @@ export interface NexusGenArgTypes {
     }
     publisher: { // args
       userId: number; // Int!
+    }
+    search: { // args
+      text: string; // String!
     }
     suggestedCategory: { // args
       suggestedCategoryId: number; // Int!

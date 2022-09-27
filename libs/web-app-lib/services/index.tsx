@@ -1,4 +1,5 @@
 export * from './logServices'
 export * from './adminServices'
 export * from './adServices'
+export * from './categoryServices'
 export * from './publisherServices'

@@ -5,9 +5,10 @@ import TextField from '@mui/material/TextField';
 import { Button, Typography } from '@mui/material';
 import { fetchGetCategories, fetchGetSoftPublishers, fetchCreateAd } from '../../services'
 import Autocomplete from '@mui/material/Autocomplete';
-import { useSelector } from 'react-redux';
 import { selectUserData } from '../../data-access/slices/userSlice'
 import AddAdFormImagesInput from './addAdFormComponents/addAdFormImagesInput'
+import { selectAdData,setAdState, addAd } from '../../data-access/slices/adSlice'
+import { useSelector, useDispatch } from 'react-redux';
 
 interface IProps {
     handleClose: any
@@ -25,6 +26,7 @@ interface IPublisher {
 
 const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
     const userData = useSelector(selectUserData)
+    const dispatch = useDispatch()
     const [categories, setCategories] = useState<ICategory[]>([])
     const [publishers, setPublishers] = useState<IPublisher[]>([])
     const [newAd, setNewAd] = useState({
@@ -73,6 +75,8 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
             .then(
                 data => {
                     if (data.data) {
+                        console.log(data.data);
+                        dispatch(addAd(data.data))
                         handleClose()
                     }
                 }

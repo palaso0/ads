@@ -29,7 +29,6 @@ export default function SignUp() {
                     dispatch(setUserState(data.data.signup.user))
                     switch (userType) {
                         case "CLIENT": {
-                            console.log("Creanto Cliente");
                             fetchCreateClient(data.data.signup.user.userId)
                                 .then(data => {
                                     if (data.data) {
@@ -42,7 +41,6 @@ export default function SignUp() {
                             fetchCreatePublisher(data.data.signup.user.userId, photo, cellphone)
                                 .then(data => {
                                     if (data.data) {
-                                        console.log("Datos Recibidos", data.data);
                                         dispatch(setPublisherId(data.data.addPublisher.publisherId))
                                         dispatch(setPublisherState({ photo, cellphone }))
                                     }

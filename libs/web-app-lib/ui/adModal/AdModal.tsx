@@ -12,7 +12,7 @@ interface IProps {
 
 
 const AdModal: React.FC<IProps> = ({ adId, handleCloseModal, openModal }) => {
-
+    console.log(adId);
     return (
         <div>
             <Modal
