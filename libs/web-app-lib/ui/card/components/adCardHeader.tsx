@@ -17,6 +17,7 @@ const AdCardHeader: React.FC<IProps> = ({title,photo,date}) => {
                 <Avatar aria-label="recipe">
                     <img src={photo}
                         style={{ width: '100%' }}
+                        alt={"avatar"}
                     ></img>
                 </Avatar>
             }

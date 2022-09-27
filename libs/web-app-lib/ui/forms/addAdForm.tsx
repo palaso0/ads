@@ -97,7 +97,6 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
             <TextField label="Title" name="title" onChange={handleChangeAd} sx={{ width: "80%" }} />
             <TextField label="Detail" name="detail" onChange={handleChangeAd} multiline={true}
                 rows={3} sx={{ width: "80%" }} />
-            <TextField label="Photos (separated by coma)" name="photos" onChange={handleChangeAd} />
             <AddAdFormImagesInput newAd={newAd} setNewAd={setNewAd} />
             <TextField label="Keywords (separated by coma)" name="keywords" onChange={handleChangeAd} sx={{ width: "50%" }} />
 

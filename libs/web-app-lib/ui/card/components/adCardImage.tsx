@@ -11,7 +11,7 @@ const AdCardImage: React.FC<IProps> = ({image}) => {
         component="img"
         
         image={image}
-        alt="Ad Image"
+        alt="Ad"
         sx={{ height:"194px"}}
       />
     )

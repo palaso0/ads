@@ -1,7 +1,5 @@
 import AdCard from "../card/adCard";
-import AdModal from "../adModal/AdModal";
 import { Box } from "@mui/system";
-import AdFormModal from "../adForm/adForm";
 import { fetchGetSoftAds } from "../../services"
 import { useEffect, useState } from "react";
 

@@ -40,7 +40,7 @@ const AddAdFormImagesInput: React.FC<IProps> = ({ newAd, setNewAd }) => {
 
     };
     return (
-        <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 3, alignItems: "center" }}>
+        <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 1, alignItems: "center" }}>
 
             <Box sx={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", gap: 3 }}>
                 <TextField label="Image URL 1" name="img1" onChange={handleChangeImgs} sx={{ mr: "5px" }} />
