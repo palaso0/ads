@@ -101,6 +101,10 @@ export const fetchCreateAd = (title: string, detail: string, photos: string[], k
                     categoryId
                     adminId
                     publisherId
+                    creationDate
+                    publishedBy {
+                      photo
+                    }
                   }
                 }
                           

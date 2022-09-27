@@ -7,7 +7,7 @@ import { fetchGetCategories, fetchGetSoftPublishers, fetchCreateAd } from '../..
 import Autocomplete from '@mui/material/Autocomplete';
 import { selectUserData } from '../../data-access/slices/userSlice'
 import AddAdFormImagesInput from './addAdFormComponents/addAdFormImagesInput'
-import { selectAdData,setAdState, addAd } from '../../data-access/slices/adSlice'
+import { selectAdData, setAdState, addAd } from '../../data-access/slices/adSlice'
 import { useSelector, useDispatch } from 'react-redux';
 
 interface IProps {
@@ -22,6 +22,14 @@ interface ICategory {
 interface IPublisher {
     publisherId: number;
     name: string;
+}
+interface ISoftAd {
+    adId: number,
+    title: string,
+    photo: string,
+    date: string,
+    text: string,
+    image: string,
 }
 
 const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
@@ -75,8 +83,17 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
             .then(
                 data => {
                     if (data.data) {
-                        console.log(data.data);
-                        dispatch(addAd(data.data))
+                        const newData: ISoftAd = {
+                            adId: data.data.addAd.adId, 
+                            title: data.data.addAd.title,
+                            photo: data.data.addAd.publishedBy.photo,
+                            date: data.data.addAd.creationDate,
+                            text: data.data.addAd.detail,
+                            image: data.data.addAd.photos[0],
+                        }
+                        console.log("Del fetch",data.data);
+                        console.log("Id",data.data.addAd.adId);
+                        dispatch(addAd(newData))
                         handleClose()
                     }
                 }
