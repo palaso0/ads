@@ -81,7 +81,7 @@ const AdModalBox: React.FC<IProps> = ({ adId, handleCloseModal }) => {
             <ModalImageCarrusel images={ad.images} />
             <ModalKeywords keywords={ad.keywords} />
             <ModalBody text={ad.description} />
-            <ModalPublisher email={ad.email} lastName={ad.lastName} name={ad.lastName} cellphone={ad.cellphone} />
+            <ModalPublisher email={ad.email} lastName={ad.lastName} name={ad.name} cellphone={ad.cellphone} />
             <ModalFooting handleCloseModal={handleCloseModal} />
         </Box>
     );

@@ -22,7 +22,7 @@ const AdCardHeader: React.FC<IProps> = ({title,photo,date}) => {
                 </Avatar>
             }
             title={title}
-            subheader={date}
+            subheader={date.split("T")[0]}
         />
     )
 }
