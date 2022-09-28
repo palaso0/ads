@@ -27,9 +27,7 @@ export const adSlice = createSlice({
             state.adData = [...state.adData]
         },
         addAd: (state,action) => {
-            console.log("LLego ",action.payload);
             state.adData = [...state.adData,action.payload]
-            console.log("En el estado",state.adData);
         }
     },
 });

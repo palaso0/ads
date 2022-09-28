@@ -111,7 +111,7 @@ export const AdMutation = extendType({
             }
         });
 
-        t.nonNull.field("removeAdd", {
+        t.nonNull.field("removeAd", {
             type: "Ad",
             args: {
                 adId: nonNull(intArg()),

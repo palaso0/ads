@@ -145,7 +145,7 @@ export interface NexusGenFieldTypes {
     addSuggestedCategory: NexusGenRootTypes['SuggestedCategory']; // SuggestedCategory!
     addUser: NexusGenRootTypes['User']; // User!
     login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
-    removeAdd: NexusGenRootTypes['Ad']; // Ad!
+    removeAd: NexusGenRootTypes['Ad']; // Ad!
     removeAdmin: NexusGenRootTypes['Admin']; // Admin!
     removeCategory: NexusGenRootTypes['Category']; // Category!
     removeClient: NexusGenRootTypes['Client']; // Client!
@@ -237,7 +237,7 @@ export interface NexusGenFieldTypeNames {
     addSuggestedCategory: 'SuggestedCategory'
     addUser: 'User'
     login: 'AuthPayload'
-    removeAdd: 'Ad'
+    removeAd: 'Ad'
     removeAdmin: 'Admin'
     removeCategory: 'Category'
     removeClient: 'Client'
@@ -326,7 +326,7 @@ export interface NexusGenArgTypes {
       email: string; // String!
       password: string; // String!
     }
-    removeAdd: { // args
+    removeAd: { // args
       adId: number; // Int!
     }
     removeAdmin: { // args

@@ -69,3 +69,24 @@ export const fetchGetAd = (adId: number) => {
         })
     })
 }
+
+export const fetchGetAdTitles = () => {
+    return fetch('http://localhost:3000//graphql', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            query:
+                `
+                query Ads {
+                    ads {
+                      title
+                      adId
+                    }
+                  }
+        `
+        })
+    }).then(data => data.json())
+}

@@ -91,8 +91,7 @@ const AddAdForm: React.FC<IProps> = ({ handleClose }) => {
                             text: data.data.addAd.detail,
                             image: data.data.addAd.photos[0],
                         }
-                        console.log("Del fetch",data.data);
-                        console.log("Id",data.data.addAd.adId);
+
                         dispatch(addAd(newData))
                         handleClose()
                     }

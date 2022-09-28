@@ -33,7 +33,6 @@ export default function Body() {
             adList.push(newAd);
         })
         dispatch(setAdState(adList))    
-        console.log(adData);
     }
 
     useEffect(() => {
