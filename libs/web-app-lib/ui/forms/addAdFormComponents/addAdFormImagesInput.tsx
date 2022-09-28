@@ -18,12 +18,16 @@ const AddAdFormImagesInput: React.FC<IProps> = ({ newAd, setNewAd }) => {
     });
 
     const handleChangeImgs = (e: any) => {
-        let imgsArray: string[] = []
         const { name, value } = e.target;
         setImgs((prevState: any) => ({
             ...prevState,
             [name]: value
         }));
+
+    };
+
+    useEffect(() => {
+        let imgsArray: string[] = []
         let img: keyof typeof imgs;
         for (img in imgs) {
             if (imgs[img] !== "") {
@@ -34,10 +38,11 @@ const AddAdFormImagesInput: React.FC<IProps> = ({ newAd, setNewAd }) => {
             ...prevState,
             ["photos"]: imgsArray
         }));
-    };
+    }, [imgs])
+
     return (
         <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 1, alignItems: "center" }}>
-            
+
             <Box sx={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", gap: 3 }}>
                 <TextField label="Image URL 1" name="img1" onChange={handleChangeImgs} sx={{ mr: "5px" }} />
                 {imgs.img1 !== "" && <img src={imgs.img1} alt="product" height="60"></img>}
