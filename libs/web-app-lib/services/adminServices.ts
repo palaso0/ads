@@ -1,5 +1,7 @@
+import {GRAPHQL_ENDPOINT} from '../constants'
+
 export const fetchCreateCategory = (category: any) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -21,7 +23,7 @@ export const fetchCreateCategory = (category: any) => {
 }
 
 export const fetchGetCategories = () => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +44,7 @@ export const fetchGetCategories = () => {
 }
 
 export const fetchGetSoftPublishers = () => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -66,7 +68,7 @@ export const fetchGetSoftPublishers = () => {
 }
 
 export const fetchCreateAd = (title: string, detail: string, photos: string[], keywords: string[], adminId: number, publisherId: number, categoryId: number) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -123,7 +125,7 @@ export const fetchCreateAd = (title: string, detail: string, photos: string[], k
 }
 
 export const fetchGetSuggestedCategories = () => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

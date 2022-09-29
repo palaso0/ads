@@ -1,11 +1,13 @@
 import AddSuggestedCategoryForm from '../../../ui/forms/addSuggestCategoryForm'
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import AppWrapper from '../../utils/appWrapper'
-
+import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
-beforeEach(() => {
-    render(<AppWrapper Component={AddSuggestedCategoryForm} />);
+
+const onCloseMock = jest.fn()
+beforeEach(() => {    
+    render(<AddSuggestedCategoryForm handleClose={onCloseMock} />);
 })
 
 describe('Add  Suggested Category form render components', () => {
@@ -22,4 +24,5 @@ describe('Add  Suggested Category form render components', () => {
         const btnAccept = screen.getByRole('button', { name: /ACCEPT/i })
         expect(btnAccept).toBeInTheDocument();
     });
+
 })

@@ -20,7 +20,6 @@ describe('Add Category form render components', () => {
         expect(title).toBeInTheDocument();
     });
     it('should render the component subtitle 12/12/12', () => {
-        screen.debug()
         const title = screen.getByText("12/12/12")
         expect(title).toBeInTheDocument();
     });

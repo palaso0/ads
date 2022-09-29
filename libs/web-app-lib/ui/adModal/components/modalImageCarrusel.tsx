@@ -42,7 +42,7 @@ const ModalImageCarrusel: React.FC<IProps> = ({ images }) => {
                                 component="img"
                                 src={img}
                                 sx={{ height:"250px", maxWidth: "100%"}}
-
+                                alt={'product'}
                             />
                         </Box>
                     ))}

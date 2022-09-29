@@ -1,5 +1,7 @@
+import {GRAPHQL_ENDPOINT} from '../constants'
+
 export const fetchSearchCategoryByTitle = (categoryTitle: any) => {
-    return fetch('http://localhost:3000//graphql', {
+    return fetch(GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

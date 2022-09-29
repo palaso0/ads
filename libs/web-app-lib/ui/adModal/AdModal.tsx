@@ -13,14 +13,14 @@ interface IProps {
 
 const AdModal: React.FC<IProps> = ({ adId, handleCloseModal, openModal }) => {
     return (
-        <div>
+        <Box>
             <Modal
                 open={openModal}
                 onClose={handleCloseModal}
             >
                 <AdModalBox handleCloseModal={handleCloseModal} adId={adId}/>
             </Modal>
-        </div>
+        </Box>
     );
 }
 

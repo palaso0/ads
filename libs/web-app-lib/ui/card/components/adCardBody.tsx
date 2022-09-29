@@ -1,5 +1,4 @@
 import React from 'react';
-import CardMedia from '@mui/material/CardMedia';
 import { CardContent, Typography } from '@mui/material';
 
 interface IProps {

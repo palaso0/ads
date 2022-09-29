@@ -7,7 +7,7 @@ import { fetchGetCategories, fetchGetSoftPublishers, fetchCreateAd } from '../..
 import Autocomplete from '@mui/material/Autocomplete';
 import { selectUserData } from '../../data-access/slices/userSlice'
 import AddAdFormImagesInput from './addAdFormComponents/addAdFormImagesInput'
-import { selectAdData, setAdState, addAd } from '../../data-access/slices/adSlice'
+import { addAd } from '../../data-access/slices/adSlice'
 import { useSelector, useDispatch } from 'react-redux';
 
 interface IProps {

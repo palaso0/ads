@@ -1,5 +1,7 @@
+import {GRAPHQL_ENDPOINT} from '../constants'
+
 export const fetchSignIn = (email: any, password: any) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +32,7 @@ export const fetchSignIn = (email: any, password: any) => {
 
 
 export const fetchSignUp = (name: any, lastName: any, userName: any, email: any, password: any) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -67,7 +69,7 @@ export const fetchSignUp = (name: any, lastName: any, userName: any, email: any,
 
 
 export const fetchCreateAdmin = (userId: number) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -89,7 +91,7 @@ export const fetchCreateAdmin = (userId: number) => {
 }
 
 export const fetchCreateClient = (userId: number) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -110,7 +112,7 @@ export const fetchCreateClient = (userId: number) => {
     .then(r => r.json())
 }
 export const fetchCreatePublisher = (userId: number, photo: any, cellphone: any) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -135,7 +137,7 @@ export const fetchCreatePublisher = (userId: number, photo: any, cellphone: any)
 }
 
 export const fetchGetUserType = (userId: number) => {
-  return fetch('http://localhost:3000//graphql', {
+  return fetch(GRAPHQL_ENDPOINT, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

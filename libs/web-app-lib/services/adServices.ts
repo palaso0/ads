@@ -1,5 +1,7 @@
+import {GRAPHQL_ENDPOINT} from '../constants'
+
 export const fetchGetSoftAds = () => {
-    return fetch('http://localhost:3000//graphql', {
+    return fetch(GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,7 +28,7 @@ export const fetchGetSoftAds = () => {
 }
 
 export const fetchGetAd = (adId: number) => {
-    return fetch('http://localhost:3000//graphql', {
+    return fetch(GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -71,7 +73,7 @@ export const fetchGetAd = (adId: number) => {
 }
 
 export const fetchGetAdTitles = () => {
-    return fetch('http://localhost:3000//graphql', {
+    return fetch(GRAPHQL_ENDPOINT, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

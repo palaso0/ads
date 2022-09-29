@@ -1,8 +1,10 @@
+import React from 'react';
 import SignIn from '../../views/signIn'
 import { render, screen } from '@testing-library/react';
-import AppWrapper from '../utils/appWrapper'
-
 import '@testing-library/jest-dom/extend-expect'
+import AppWrapper from '../utils/appWrapper'
+import {prettyDOM} from '@testing-library/dom'
+import { debug } from 'console';
 
 beforeEach(() => {
   render(<AppWrapper Component={SignIn} />);
@@ -35,4 +37,5 @@ describe('SignIn render components', () => {
     const link = screen.getByText(/Orion's Adds/i)
     expect(link).toBeInTheDocument()
   })
+
 })

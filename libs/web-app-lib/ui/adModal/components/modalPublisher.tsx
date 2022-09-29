@@ -19,12 +19,14 @@ const ModalPublisher: React.FC<IProps> = ({ email, lastName, name, cellphone }) 
             </Typography>
 
             <Typography variant="h5">
-                <PersonOutlinedIcon sx={{ color: "darkBlue" }} /> {name} {lastName} <br />
-                <EmailOutlinedIcon sx={{ color: "darkBlue" }} /> {email} <br />
-                <LocalPhoneOutlinedIcon sx={{ color: "darkBlue" }} /> {cellphone} <br />
+                <PersonOutlinedIcon sx={{ color: "darkBlue" }} /> {name} {lastName}
             </Typography>
-
-
+            <Typography variant="h5">
+                <EmailOutlinedIcon sx={{ color: "darkBlue" }} /> {email}
+            </Typography>
+            <Typography variant="h5">
+                <LocalPhoneOutlinedIcon sx={{ color: "darkBlue" }} /> {cellphone}
+            </Typography>
         </Box>
     )
 };
