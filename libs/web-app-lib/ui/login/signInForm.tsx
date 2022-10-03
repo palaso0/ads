@@ -63,6 +63,7 @@ const SignInForm: React.FC<IProps> = ({handleSubmit,errorMessage}) => {
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        id="sign-in-button"
                     >
                         Sign In
                     </Button>
