@@ -1,4 +1,4 @@
-import {GRAPHQL_ENDPOINT} from '../constants'
+import { GRAPHQL_ENDPOINT } from '../constants'
 
 export const fetchGetSoftAds = () => {
     return fetch(GRAPHQL_ENDPOINT, {
@@ -10,18 +10,22 @@ export const fetchGetSoftAds = () => {
         body: JSON.stringify({
             query:
                 `
-            query Ads {
-                ads {
-                adId
-                title
-                detail
-                publishedBy {
-                    photo
-                }
-                creationDate
-                photos
-                }
-            }
+                query Ads {
+                    ads {
+                      adId
+                      title
+                      detail
+                      publishedBy {
+                        photo
+                      }
+                      creationDate
+                      photos
+                      category {
+                        title
+                      }
+                    }
+                  }
+                  
         `
         })
     })

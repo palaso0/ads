@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { selectUserData } from '../data-access/slices/userSlice';
 import { useSelector } from 'react-redux';
 import Body from '../ui/body/body';
+import SortMenu from './sortMenu';
+import { Box } from '@mui/material';
 
 export const ClientPage = () => {
   const userData = useSelector(selectUserData)
@@ -11,7 +13,10 @@ export const ClientPage = () => {
   return (
     <>
       <NavBar />
-      <Body />
+      <Box sx={{display:"flex",flexDirection:"row",flexWrap:"no-wrap", gap: 3}}>
+        <SortMenu />
+        <Body />
+      </Box>
     </>
   );
 };
