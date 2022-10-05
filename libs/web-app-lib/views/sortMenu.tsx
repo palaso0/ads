@@ -9,7 +9,6 @@ import { fetchGetCategories } from '../services';
 
 export default function SortMenu() {
     const [openCategories, setOpenCategories] = useState(true);
-    const [openPublishers, setOpenPublishers] = useState(true);
     const [categories, setCategories] = useState([])
 
     const dispatch: any = useDispatch()
@@ -19,9 +18,6 @@ export default function SortMenu() {
         dispatch(setSortLabel(sortLabel))
     }
     const handleClickCategories = () => setOpenCategories(!open);
-
-    const handleClickPublishers = () => setOpenPublishers(!open);
-
 
     const getCategories = async () => {
         const categories = await fetchGetCategories()
