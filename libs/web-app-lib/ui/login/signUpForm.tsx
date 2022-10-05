@@ -56,7 +56,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                 </Typography>
 
                 <TextField
-                    id="outlined-select-currency"
+                    id="sign-up-select-user-type"
                     select
                     label="User Type"
                     value={userType}
@@ -65,7 +65,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                     sx={{ m: 2 }}
                 >
                     {USERS_TYPES.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
+                        <MenuItem key={option.value} value={option.value} id={"Sign-up-"+option.value}>
                             {option.value}
                         </MenuItem>
                     ))}
@@ -79,7 +79,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                                 name="firstName"
                                 required
                                 fullWidth
-                                id="firstName"
+                                id="sign-up-first-name"
                                 label="First Name"
                                 autoFocus
                             />
@@ -88,7 +88,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                             <TextField
                                 required
                                 fullWidth
-                                id="lastName"
+                                id="sign-up-last-name"
                                 label="Last Name"
                                 name="lastName"
                             />
@@ -97,7 +97,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                             <TextField
                                 required
                                 fullWidth
-                                id="userName"
+                                id="sign-up-user-name"
                                 label="User Name"
                                 name="userName"
                             />
@@ -106,7 +106,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                             <TextField
                                 required
                                 fullWidth
-                                id="email"
+                                id="sign-up-email-address"
                                 label="Email Address"
                                 name="email"
                             />
@@ -118,7 +118,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                                 name="password"
                                 label="Password"
                                 type="password"
-                                id="password"
+                                id="sign-up-password"
                                 autoComplete="new-password"
                             />
                         </Grid>
@@ -132,6 +132,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                                             fullWidth
                                             label="Photo URL"
                                             autoFocus
+                                            id="sign-up-photo-url"
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -140,6 +141,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                                             fullWidth
                                             label="Cellphone"
                                             name="cellphone"
+                                            id="sign-up-cellphone"
                                         />
                                     </Grid>
                                 </>
@@ -150,6 +152,7 @@ const SignUpForm: React.FC<IProps> = ({ handleSubmit, userType, setUserType, err
                         fullWidth
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
+                        id="sign-up-button"
                     >
                         Sign Up
                     </Button>

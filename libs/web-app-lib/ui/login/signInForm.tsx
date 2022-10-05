@@ -74,7 +74,7 @@ const SignInForm: React.FC<IProps> = ({handleSubmit,errorMessage}) => {
                         </Grid>
                         <Grid item>
                             <RouteLink to="/signUp">
-                                "Don't have an account? Sign Up"
+                                Don't have an account? Sign Up
                             </RouteLink>
                         </Grid>
                     </Grid>

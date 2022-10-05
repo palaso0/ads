@@ -8,9 +8,6 @@ describe('web-app', () => {
   
   it('should display todos', () => {
     title().should((t) => expect(t.length).equal(1));
-  });
-  it('should display inputs labels', () => {
-    inputs().should((t)=> expect(t.length).equal(2))
   })
   it('should display password input', () => {
     password().should((t) => expect(t.length).equal(1))
@@ -20,5 +17,8 @@ describe('web-app', () => {
   })
   it('should display the button', () => {
     signInButton().should((t) => expect(t.length).equal(1))
-  })  
+  })
+  it('should display the link text', () => {
+    cy.contains('a',"Don't have an account? Sign Up").should((t) => expect(t.length).equal(1))
+  })
 });
